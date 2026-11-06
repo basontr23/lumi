@@ -461,7 +461,7 @@
     }
   }
 
-  // Helper: jump directly to a Pokémon in Dex from Boss / Routes / Team
+  // Helper: jump directly to a Pokémon in Dex from Boss / Routes / Team / Evolution Chain
   function goToPokemonInDex(name) {
     if (!name) return;
     const clean = name.toLowerCase().trim();
@@ -471,6 +471,7 @@
       selectPokemon(found.id, true);
     }
   }
+  window.selectPokemonByName = goToPokemonInDex;
 
   // Render Detail Inspector
   function renderDetailDrawer() {
@@ -674,10 +675,8 @@
         </div>
 
         <div class="detail-section">
-          <div class="section-title">Evolution</div>
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:8px; padding:0.75rem; font-size:0.82rem; font-weight:700; text-align:center; color:var(--accent-cyan);">
-            ${p.evolution || 'No known evolutions'}
-          </div>
+          <div class="section-title">Evolution Line</div>
+          ${typeof renderEvolutionLine === 'function' ? renderEvolutionLine(p) : `<div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:8px; padding:0.75rem; font-size:0.82rem; font-weight:700; text-align:center; color:var(--accent-cyan);">${p.evolution || 'No known evolutions'}</div>`}
         </div>
 
         <div class="detail-section">
@@ -749,12 +748,14 @@
     if (!controls) {
       container.innerHTML = `
         <div class="items-controls" style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; justify-content:space-between; margin-bottom:0.75rem;">
-          <input type="text" id="item-search-input" class="search-input" placeholder="Search items or locations..." style="max-width:320px;" />
+          <input type="text" id="item-search-input" class="search-input" placeholder="Search items, TMs, locations..." style="max-width:320px;" />
           <div class="items-category-chips" style="display:flex; gap:0.35rem; flex-wrap:wrap;">
             <button class="chip-btn active" data-cat="all">All Items</button>
             <button class="chip-btn" data-cat="Evolution">Evolution Items</button>
-            <button class="chip-btn" data-cat="Key Mod Item">Key / Mod Items</button>
-            <button class="chip-btn" data-cat="Battle Item">Battle & Competitive</button>
+            <button class="chip-btn" data-cat="Key Item">Key Items</button>
+            <button class="chip-btn" data-cat="TM">TMs (1-104)</button>
+            <button class="chip-btn" data-cat="Battle Item">Battle & Held</button>
+            <button class="chip-btn" data-cat="Mint">Mints</button>
             <button class="chip-btn" data-cat="Berry">Berries</button>
           </div>
         </div>
