@@ -1,4 +1,4 @@
-const MOVES_DB = {
+var MOVES_DB = {
     "anchorshot":  {
                        "contact":  true,
                        "type":  "Steel",
@@ -11449,3 +11449,5 @@ const MOVES_DB = {
                     }
 }
 ;
+
+window.MOVES_DB = MOVES_DB;

@@ -1,4 +1,4 @@
-const POKEMON_PART2 = [{"vanillaStats":{"def":35,"spe":70,"atk":45,"spa":65,"spd":55,"hp":40},"id":252,"locations":["Oreburgh City PokÃ©mon Center (Interviewer gift)","Grand Underground: Grassland/Volcanic/Fountainspring Cave"],"generation":3,"abilities":["Overgrow"],"isModified":false,"lumiChanges":[],"dexNum":"#252","catchRate":45,"evolution":"Evolves at Level 16","types":["Grass"],"levelUpMoves":[{"moveId":"megadrain","lvl":9},
+var POKEMON_PART2 = [{"vanillaStats":{"def":35,"spe":70,"atk":45,"spa":65,"spd":55,"hp":40},"id":252,"locations":["Oreburgh City PokÃ©mon Center (Interviewer gift)","Grand Underground: Grassland/Volcanic/Fountainspring Cave"],"generation":3,"abilities":["Overgrow"],"isModified":false,"lumiChanges":[],"dexNum":"#252","catchRate":45,"evolution":"Evolves at Level 16","types":["Grass"],"levelUpMoves":[{"moveId":"megadrain","lvl":9},
 {moveId":"pound","lvl":1},
 {moveId":"leafstorm","lvl":39},
 {moveId":"leer","lvl":1},
@@ -4316,10 +4316,11 @@ const POKEMON_PART2 = [{"vanillaStats":{"def":35,"spe":70,"atk":45,"spa":65,"spd
 {moveId":"calmmind","lvl":25},
 {moveId":"moonblast","lvl":30},
 {moveId":"hypervoice","lvl":37}],"genderRatio":"87.5% M / 12.5% F","weight":"23.5 kg","height":"1.0 m","stats":{"def":65,"spe":60,"atk":65,"spa":110,"spd":130,"hp":95},"hiddenAbility":"Pixilate","name":"Sylveon","species":"Intertwining PokÃ©mon"}];
-const POKEMON_DATA = POKEMON_PART1.concat(POKEMON_PART2);
+var POKEMON_DATA = POKEMON_PART1.concat(POKEMON_PART2);
 
 POKEMON_DATA.forEach(p => {
   p.bst = p.stats.hp + p.stats.atk + p.stats.def + p.stats.spa + p.stats.spd + p.stats.spe;
   p.vanillaBst = p.vanillaStats ? (p.vanillaStats.hp + p.vanillaStats.atk + p.vanillaStats.def + p.vanillaStats.spa + p.vanillaStats.spd + p.vanillaStats.spe) : p.bst;
   p.bstDiff = p.bst - p.vanillaBst;
 });
+window.POKEMON_DATA = POKEMON_DATA;

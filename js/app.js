@@ -28,12 +28,23 @@
     cynthia: '👑'
   };
 
+  function getRoster() {
+    if (typeof window !== 'undefined' && window.POKEMON_DATA && window.POKEMON_DATA.length > 0) return window.POKEMON_DATA;
+    if (typeof POKEMON_DATA !== 'undefined' && Array.isArray(POKEMON_DATA) && POKEMON_DATA.length > 0) return POKEMON_DATA;
+    if (typeof window !== 'undefined' && window.POKEMON_PART1) {
+      return (window.POKEMON_PART1 || []).concat(window.POKEMON_PART2 || []);
+    }
+    return [];
+  }
+
+  const initialRoster = getRoster();
+
   // State
   const state = {
     currentSection: 'pokedex', // 'pokedex', 'items', 'routes', 'bosses', 'levelcaps'
-    pokemon: [...POKEMON_DATA],
-    filteredPokemon: [...POKEMON_DATA],
-    selectedPokemon: POKEMON_DATA[0],
+    pokemon: [...initialRoster],
+    filteredPokemon: [...initialRoster],
+    selectedPokemon: initialRoster[0] || null,
     viewMode: window.innerWidth <= 768 ? 'grid' : 'table', // default to grid on mobile
     searchQuery: '',
     type1: 'all',
@@ -107,7 +118,7 @@
       return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonOrName.id <= 493 ? pokemonOrName.id : 387}.png`;
     }
     const nameStr = typeof pokemonOrName === 'string' ? pokemonOrName : (pokemonOrName.name || '');
-    const found = POKEMON_DATA.find(p => p.name.toLowerCase() === nameStr.toLowerCase() || p.name.toLowerCase().startsWith(nameStr.toLowerCase()));
+    const found = getRoster().find(p => p.name.toLowerCase() === nameStr.toLowerCase() || p.name.toLowerCase().startsWith(nameStr.toLowerCase()));
     if (found) {
       return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${found.id <= 493 ? found.id : 387}.png`;
     }
@@ -170,7 +181,7 @@
 
   // Filter & Sort Logic for Pokédex
   function applyFilters() {
-    let result = [...POKEMON_DATA];
+    let result = [...getRoster()];
 
     if (state.searchQuery.trim()) {
       const q = state.searchQuery.toLowerCase().trim();
@@ -398,7 +409,7 @@
 
   // Select Pokemon & Auto-Reset Scroll to Top
   function selectPokemon(id, openDrawer = true) {
-    const p = POKEMON_DATA.find(item => item.id === id);
+    const p = getRoster().find(item => item.id === id);
     if (!p) return;
     state.selectedPokemon = p;
 
@@ -432,7 +443,7 @@
   function goToPokemonInDex(name) {
     if (!name) return;
     const clean = name.toLowerCase().trim();
-    const found = POKEMON_DATA.find(p => p.name.toLowerCase() === clean || p.name.toLowerCase().startsWith(clean));
+    const found = getRoster().find(p => p.name.toLowerCase() === clean || p.name.toLowerCase().startsWith(clean));
     if (found) {
       switchSection('pokedex');
       selectPokemon(found.id, true);
@@ -1021,7 +1032,7 @@
     for (let i = 0; i < 6; i++) {
       const id = state.team[i];
       if (id) {
-        const p = POKEMON_DATA.find(x => x.id === id);
+        const p = getRoster().find(x => x.id === id);
         if (p) {
           teamMembers.push(p);
           teamHtml += `
@@ -1161,8 +1172,11 @@
     });
 
     randomBtn.addEventListener('click', () => {
-      const randIdx = Math.floor(Math.random() * POKEMON_DATA.length);
-      selectPokemon(POKEMON_DATA[randIdx].id);
+      const roster = getRoster();
+      if (roster.length > 0) {
+        const randIdx = Math.floor(Math.random() * roster.length);
+        selectPokemon(roster[randIdx].id);
+      }
     });
 
     teamBtn.addEventListener('click', () => {
@@ -1219,6 +1233,12 @@
   }
 
   function init() {
+    if (!state.pokemon || state.pokemon.length === 0) {
+      const roster = getRoster();
+      state.pokemon = [...roster];
+      state.filteredPokemon = [...roster];
+      state.selectedPokemon = roster[0] || null;
+    }
     if (state.viewMode === 'grid') {
       viewToggleBtn.innerHTML = '☰ Table View';
     } else {
@@ -1229,7 +1249,9 @@
     updateTeamBtnBadge();
     applyFilters();
     // Select first Pokémon; only auto-open drawer if on desktop (> 900px)
-    selectPokemon(POKEMON_DATA[0].id, window.innerWidth > 900);
+    if (state.pokemon && state.pokemon.length > 0) {
+      selectPokemon(state.pokemon[0].id, window.innerWidth > 900);
+    }
   }
 
   if (document.readyState === 'loading') {

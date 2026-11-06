@@ -1,4 +1,4 @@
-const ABILITIES_DB = {
+var ABILITIES_DB = {
     "raindish":  {
                      "name":  "Rain Dish",
                      "desc":  "If Rain is active, this Pokemon restores 1/16 of its maximum HP, rounded down, at the end of each turn. This effect is prevented if this Pokemon is holding a Utility Umbrella."
@@ -1289,3 +1289,5 @@ const ABILITIES_DB = {
                         }
 }
 ;
+
+window.ABILITIES_DB = ABILITIES_DB;

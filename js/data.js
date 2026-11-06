@@ -5,7 +5,7 @@
  * Level caps, Boss teams, Items database, Route encounters, Moves & Abilities.
  */
 
-const TYPE_CHART = {
+var TYPE_CHART = {
   Normal:   { Rock: 0.5, Ghost: 0, Steel: 0.5 },
   Fire:     { Fire: 0.5, Water: 0.5, Grass: 2, Ice: 2, Bug: 2, Rock: 0.5, Dragon: 0.5, Steel: 2 },
   Water:    { Fire: 2, Water: 0.5, Grass: 0.5, Ground: 2, Rock: 2, Dragon: 0.5 },
@@ -26,7 +26,7 @@ const TYPE_CHART = {
   Fairy:    { Fire: 0.5, Fighting: 2, Poison: 0.5, Dragon: 2, Dark: 2, Steel: 0.5 }
 };
 
-const ALL_TYPES = [
+var ALL_TYPES = [
   "Normal", "Fire", "Water", "Grass", "Electric", "Ice",
   "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug",
   "Rock", "Ghost", "Dragon", "Steel", "Dark", "Fairy"
@@ -49,7 +49,7 @@ function calculateMatchups(types) {
 // ==========================================
 // --- LEVEL CAPS DATA ---
 // ==========================================
-const LEVEL_CAPS_DATA = [
+var LEVEL_CAPS_DATA = [
   { badge: 1, name: "Coal Badge", leader: "Roark", city: "Oreburgh City", cap: 16, type: "Rock", ace: "Cranidos (Lv. 16)", notes: "Rock-type gym. Water/Grass/Fighting recommended." },
   { badge: 2, name: "Forest Badge", leader: "Gardenia", city: "Eterna City", cap: 26, type: "Grass", ace: "Roserade (Lv. 26)", notes: "Grass-type gym. Fire/Flying/Ice/Poison recommended." },
   { badge: 3, name: "Cobble Badge", leader: "Maylene", city: "Veilstone City", cap: 33, type: "Fighting", ace: "Lucario (Lv. 33)", notes: "Fighting-type gym. Flying/Psychic/Fairy recommended." },
@@ -66,7 +66,7 @@ const LEVEL_CAPS_DATA = [
 // ==========================================
 // --- ITEMS DATABASE ---
 // ==========================================
-const ITEMS_DATA = [
+var ITEMS_DATA = [
   // Evolution Items
   { id: "link-cable", name: "Link Cable", category: "Evolution", icon: "≡ƒöù", desc: "A cord providing energy to trigger trade evolutions instantly without trading (e.g. Kadabra, Machoke, Graveler, Haunter, Scyther, Onix, Porygon).", locations: ["Veilstone Dept Store (4F)", "Solaceon Ruins", "Mining in Grand Underground"] },
   { id: "incense-burner", name: "Incense Burner", category: "Key Mod Item", icon: "≡ƒÅ«", desc: "Ancient key item that channels Hisuian energy. Allows evolving and encountering Hisuian forms and regional variants across Sinnoh.", locations: ["Gift from NPC in Floaroma Town (near Flower Shop)"] },
@@ -102,7 +102,7 @@ const ITEMS_DATA = [
 // ==========================================
 // --- BOSS TEAMS DATA ---
 // ==========================================
-const BOSS_TEAMS_DATA = [
+var BOSS_TEAMS_DATA = [
   {
     "bossId": "roark",
     "name": "Roark",
@@ -381,7 +381,7 @@ const BOSS_TEAMS_DATA = [
 ]
 ;
 
-const ROUTES_DATA = [
+var ROUTES_DATA = [
   {
     routeId: "route-201",
     name: "Route 201",
@@ -475,3 +475,11 @@ const ROUTES_DATA = [
 
 // Load National Pok├⌐dex dataset (493 Gen 1-4 species + Hisuian forms)
 // For space and efficiency, complete species list with full stats, typing, and abilities:
+
+window.TYPE_CHART = TYPE_CHART;
+window.ALL_TYPES = ALL_TYPES;
+window.calculateMatchups = calculateMatchups;
+window.LEVEL_CAPS_DATA = LEVEL_CAPS_DATA;
+window.ITEMS_DATA = ITEMS_DATA;
+window.BOSS_TEAMS_DATA = BOSS_TEAMS_DATA;
+window.ROUTES_DATA = ROUTES_DATA;
