@@ -1,7 +1,7 @@
 /**
- * Luminescent Platinum Pok├⌐dex Database
+ * Luminescent Platinum Pokédex Database
  * Accurate to https://luminescent.team/docs
- * Complete dataset: All Gen 1-4 Pok├⌐mon (1-493) + Hisuian forms,
+ * Complete dataset: All Gen 1-4 Pokémon (1-493) + Hisuian forms,
  * Level caps, Boss teams, Items database, Route encounters, Moves & Abilities.
  */
 
@@ -59,44 +59,109 @@ var LEVEL_CAPS_DATA = [
   { badge: 7, name: "Icicle Badge", leader: "Candice", city: "Snowpoint City", cap: 56, type: "Ice", ace: "Froslass (Lv. 56)", notes: "Ice-type gym. Fire/Fighting/Rock/Steel recommended." },
   { badge: 8, name: "Beacon Badge", leader: "Volkner", city: "Sunyshore City", cap: 62, type: "Electric", ace: "Electivire (Lv. 62)", notes: "Electric-type gym. Ground-type recommended." },
   { badge: "Galactic", name: "Spear Pillar", leader: "Cyrus", city: "Mt. Coronet", cap: 68, type: "Dark", ace: "Weavile (Lv. 68)", notes: "Climactic battle atop Mt. Coronet before Dialga/Palkia." },
-  { badge: "E4", name: "Elite Four", leader: "Aaron, Bertha, Flint, Lucian", city: "Pok├⌐mon League", cap: 75, type: "Mixed", ace: "Drapion, Hippowdon, Magmortar, Bronzong", notes: "Bug, Ground, Fire, and Psychic masters." },
-  { badge: "Champ", name: "Champion", leader: "Cynthia", city: "Pok├⌐mon League", cap: 78, type: "Champion", ace: "Garchomp (Lv. 78)", notes: "Ultimate battle. Competitive EV spreads, held items, and coverage." }
+  { badge: "E4", name: "Elite Four", leader: "Aaron, Bertha, Flint, Lucian", city: "Pokémon League", cap: 75, type: "Mixed", ace: "Drapion, Hippowdon, Magmortar, Bronzong", notes: "Bug, Ground, Fire, and Psychic masters." },
+  { badge: "Champ", name: "Champion", leader: "Cynthia", city: "Pokémon League", cap: 78, type: "Champion", ace: "Garchomp (Lv. 78)", notes: "Ultimate battle. Competitive EV spreads, held items, and coverage." }
 ];
 
 // ==========================================
 // --- ITEMS DATABASE ---
 // ==========================================
 var ITEMS_DATA = [
+  // Key & Mod Items
+  { id: "incense-burner", name: "Incense Burner", category: "Key Mod Item", icon: "🏮", desc: "Ancient key item that channels Hisuian energy. Allows encountering and evolving Hisuian forms across Sinnoh.", locations: ["Gift from NPC in Floaroma Town (near Flower Shop)"] },
+  { id: "everlasting-candy", name: "Everlasting Candy", category: "Key Mod Item", icon: "🍬", desc: "Reusable Rare Candy key item that instantly levels up Pokémon to test builds or reach the level cap effortlessly.", locations: ["Gift from Lucas/Dawn in Sandgem Town"] },
+  { id: "shiny-charm", name: "Shiny Charm", category: "Key Mod Item", icon: "✨", desc: "A shiny, magical charm that greatly increases the chance of finding Shiny Pokémon in the wild and from eggs.", locations: ["Hotel Grand Lake (Game Freak Director after completing National Dex)"] },
+  { id: "oval-charm", name: "Oval Charm", category: "Key Mod Item", icon: "🥚", desc: "An oval charm that increases the frequency with which eggs are found at the Solaceon Pokémon Nursery.", locations: ["Hotel Grand Lake (defeat Game Freak Morimoto)"] },
+  { id: "ability-capsule", name: "Ability Capsule", category: "Key Mod Item", icon: "💊", desc: "Switches a Pokémon with two standard abilities between its primary and secondary ability.", locations: ["Veilstone Dept Store (4F)", "Battle Park (50 BP)"] },
+  { id: "ability-patch", name: "Ability Patch", category: "Key Mod Item", icon: "🩹", desc: "A patch that unlocks a Pokémon's rare Hidden Ability, enabling powerful hidden traits.", locations: ["Veilstone Dept Store (4F)", "Battle Park (99 BP)"] },
+  { id: "bottle-cap", name: "Bottle Cap", category: "Key Mod Item", icon: "🪙", desc: "Allows Mr. Hyper in the Fight Area to Hyper Train one individual stat IV to 31 maximum.", locations: ["Grand Underground mining", "Battle Park (25 BP)"] },
+  { id: "gold-bottle-cap", name: "Gold Bottle Cap", category: "Key Mod Item", icon: "👑", desc: "Allows Mr. Hyper in the Fight Area to Hyper Train all 6 stat IVs to 31 maximum in one go.", locations: ["Grand Underground rare mining", "Battle Park (75 BP)"] },
+  { id: "nature-mints", name: "Nature Mints", category: "Key Mod Item", icon: "🌿", desc: "Aromatic mints (Adamant, Jolly, Modest, Timid, Bold, Impish, Calm, Careful, Brave, Quiet) that alter stat growth to match the specified nature.", locations: ["Veilstone Dept Store (4F)", "Battle Park (20 BP)"] },
+
   // Evolution Items
-  { id: "link-cable", name: "Link Cable", category: "Evolution", icon: "≡ƒöù", desc: "A cord providing energy to trigger trade evolutions instantly without trading (e.g. Kadabra, Machoke, Graveler, Haunter, Scyther, Onix, Porygon).", locations: ["Veilstone Dept Store (4F)", "Solaceon Ruins", "Mining in Grand Underground"] },
-  { id: "incense-burner", name: "Incense Burner", category: "Key Mod Item", icon: "≡ƒÅ«", desc: "Ancient key item that channels Hisuian energy. Allows evolving and encountering Hisuian forms and regional variants across Sinnoh.", locations: ["Gift from NPC in Floaroma Town (near Flower Shop)"] },
-  { id: "everlasting-candy", name: "Everlasting Candy", category: "Key Mod Item", icon: "≡ƒì¼", desc: "Reusable Rare Candy key item that instantly levels up Pok├⌐mon to test builds or reach the level cap effortlessly.", locations: ["Gift from Lucas/Dawn in Sandgem Town"] },
-  { id: "peat-block", name: "Peat Block", category: "Evolution", icon: "≡ƒº▒", desc: "A block of muddy peat. Triggers Ursaring's evolution into Ursaluna during the Full Moon in Solaceon Town.", locations: ["Grand Underground mining", "Route 216 snow item pickup"] },
-  { id: "black-augurite", name: "Black Augurite", category: "Evolution", icon: "≡ƒ¬ô", desc: "Volcanic stone that triggers Scyther's evolution into the mighty Bug/Rock axe warrior Kleavor.", locations: ["Grand Underground mining", "Solaceon Ruins hidden room"] },
-  { id: "dawn-stone", name: "Dawn Stone", category: "Evolution", icon: "Γ£¿", desc: "Evolves male Kirlia into Gallade, and female Snorunt into Froslass.", locations: ["Route 212 (requires Surf)", "Mt. Coronet B1F", "Pick up with Pickup ability (Lv 51+)"] },
-  { id: "dusk-stone", name: "Dusk Stone", category: "Evolution", icon: "≡ƒîæ", desc: "Evolves Murkrow into Honchkrow, and Misdreavus into Mismagius.", locations: ["Galactic Warehouse (Veilstone)", "Victory Road B1F", "Grand Underground"] },
-  { id: "shiny-stone", name: "Shiny Stone", category: "Evolution", icon: "≡ƒîƒ", desc: "Evolves Roselia into Roserade, and Togetic into Togekiss.", locations: ["Iron Island B3F", "Route 228 (requires Rock Climb)"] },
-  { id: "electirizer", name: "Electirizer", category: "Evolution", icon: "ΓÜí", desc: "Evolves Electabuzz into Electivire when used with Link Cable or level-up.", locations: ["Held by wild Elekid/Electabuzz (Route 222, 5% chance)", "Grand Underground Whiteout Cave"] },
-  { id: "magmarizer", name: "Magmarizer", category: "Evolution", icon: "≡ƒöÑ", desc: "Evolves Magmar into Magmortar when used with Link Cable or level-up.", locations: ["Held by wild Magby/Magmar (Fuego Ironworks, 5% chance)", "Grand Underground Volcanic Cave"] },
-  { id: "razor-claw", name: "Razor Claw", category: "Evolution", icon: "≡ƒÉ╛", desc: "Evolves Sneasel into Weavile (Night), or Hisuian Sneasel into Sneasler (Day). Boosts critical hit ratio.", locations: ["Route 224", "Victory Road", "Battle Park (48 BP)"] },
-  { id: "razor-fang", name: "Razor Fang", category: "Evolution", icon: "≡ƒª╖", desc: "Evolves Gligar into Gliscor at Night. May cause target to flinch.", locations: ["Route 214", "Battle Park (48 BP)"] },
-  { id: "metal-coat", name: "Metal Coat", category: "Evolution", icon: "≡ƒ¢í∩╕Å", desc: "Evolves Scyther into Scizor, and Onix into Steelix. Boosts Steel-type attacks by 20%.", locations: ["Iron Island (gift from Byron)", "Held by wild Magnemite/Bronzor (5%)"] },
-  { id: "protector", name: "Protector", category: "Evolution", icon: "≡ƒªÅ", desc: "Heavy protective armor. Evolves Rhydon into Rhyperior.", locations: ["Route 228", "Grand Underground mining"] },
-  { id: "reaper-cloth", name: "Reaper Cloth", category: "Evolution", icon: "≡ƒæ╗", desc: "Imbued with spiritual power. Evolves Dusclops into Dusknoir.", locations: ["Route 229", "Turnback Cave"] },
-  { id: "prism-scale", name: "Prism Scale", category: "Evolution", icon: "≡ƒÉƒ", desc: "Mysterious scale that radiates rainbow light. Evolves Feebas into Milotic.", locations: ["Mt. Coronet B1F water tile", "Pastoria City beach"] },
+  { id: "link-cable", name: "Link Cable", category: "Evolution", icon: "🔗", desc: "A cord providing energy to trigger trade evolutions instantly without trading (e.g. Kadabra, Machoke, Graveler, Haunter, Scyther, Onix, Porygon, Dusclops, Electabuzz, Magmar).", locations: ["Veilstone Dept Store (4F)", "Solaceon Ruins", "Grand Underground mining"] },
+  { id: "peat-block", name: "Peat Block", category: "Evolution", icon: "🧱", desc: "A block of muddy peat. Triggers Ursaring's evolution into Ursaluna during the Full Moon in Solaceon Town.", locations: ["Grand Underground mining", "Route 216 snow item pickup"] },
+  { id: "black-augurite", name: "Black Augurite", category: "Evolution", icon: "🪓", desc: "Volcanic stone that triggers Scyther's evolution into the mighty Bug/Rock axe warrior Kleavor.", locations: ["Grand Underground mining", "Solaceon Ruins hidden room"] },
+  { id: "dawn-stone", name: "Dawn Stone", category: "Evolution", icon: "✨", desc: "Evolves male Kirlia into Gallade, and female Snorunt into Froslass.", locations: ["Route 212 (requires Surf)", "Mt. Coronet B1F", "Pickup ability (Lv 51+)"] },
+  { id: "dusk-stone", name: "Dusk Stone", category: "Evolution", icon: "🌘", desc: "Evolves Murkrow into Honchkrow, and Misdreavus into Mismagius.", locations: ["Galactic Warehouse (Veilstone)", "Victory Road B1F", "Grand Underground mining"] },
+  { id: "shiny-stone", name: "Shiny Stone", category: "Evolution", icon: "🌟", desc: "Evolves Roselia into Roserade, and Togetic into Togekiss.", locations: ["Iron Island B3F", "Route 228 (requires Rock Climb)"] },
+  { id: "moon-stone", name: "Moon Stone", category: "Evolution", icon: "🌙", desc: "Evolves Nidorina, Nidorino, Clefairy, Jigglypuff, and Skitty.", locations: ["Grand Underground mining", "Held by wild Clefairy (5%)"] },
+  { id: "sun-stone", name: "Sun Stone", category: "Evolution", icon: "☀️", desc: "Evolves Gloom into Bellossom, Sunkern into Sunflora, and Petilil into Hisuian Lilligant.", locations: ["Grand Underground mining", "Held by wild Solrock (5%)"] },
+  { id: "fire-stone", name: "Fire Stone", category: "Evolution", icon: "🔥", desc: "Evolves Vulpix, Growlithe (into Arcanine / Hisuian Arcanine), and Eevee into Flareon.", locations: ["Fuego Ironworks", "Grand Underground mining"] },
+  { id: "water-stone", name: "Water Stone", category: "Evolution", icon: "💧", desc: "Evolves Poliwhirl, Shellder, Staryu, Lombre, and Eevee into Vaporeon.", locations: ["Route 213 (requires Surf)", "Grand Underground mining"] },
+  { id: "thunder-stone", name: "Thunder Stone", category: "Evolution", icon: "⚡", desc: "Evolves Pikachu, Eevee into Jolteon, and Eelektrik.", locations: ["Sunyshore City", "Grand Underground mining"] },
+  { id: "leaf-stone", name: "Leaf Stone", category: "Evolution", icon: "🍃", desc: "Evolves Gloom, Weepinbell, Exeggcute, Nuzleaf, and Hisuian Voltorb into Hisuian Electrode.", locations: ["Floaroma Meadow", "Grand Underground mining"] },
+  { id: "ice-stone", name: "Ice Stone", category: "Evolution", icon: "❄️", desc: "Evolves Alolan Vulpix, Alolan Sandshrew, and Eevee into Glaceon.", locations: ["Route 217 snow pickup", "Grand Underground Glacial Cave"] },
+  { id: "electirizer", name: "Electirizer", category: "Evolution", icon: "🔌", desc: "Evolves Electabuzz into Electivire when used with Link Cable or level-up.", locations: ["Held by wild Elekid/Electabuzz (Route 222, 5% chance)", "Grand Underground Whiteout Cave"] },
+  { id: "magmarizer", name: "Magmarizer", category: "Evolution", icon: "🌋", desc: "Evolves Magmar into Magmortar when used with Link Cable or level-up.", locations: ["Held by wild Magby/Magmar (Fuego Ironworks, 5% chance)", "Grand Underground Volcanic Cave"] },
+  { id: "razor-claw", name: "Razor Claw", category: "Evolution", icon: "🦅", desc: "Evolves Sneasel into Weavile (Night), or Hisuian Sneasel into Sneasler (Day). Boosts critical hit ratio.", locations: ["Route 224", "Victory Road", "Battle Park (48 BP)"] },
+  { id: "razor-fang", name: "Razor Fang", category: "Evolution", icon: "🦇", desc: "Evolves Gligar into Gliscor at Night. May cause target to flinch.", locations: ["Route 214", "Battle Park (48 BP)"] },
+  { id: "metal-coat", name: "Metal Coat", category: "Evolution", icon: "🛡️", desc: "Evolves Scyther into Scizor, and Onix into Steelix. Boosts Steel-type attacks by 20%.", locations: ["Iron Island (gift from Byron)", "Held by wild Magnemite/Bronzor (5%)"] },
+  { id: "protector", name: "Protector", category: "Evolution", icon: "🦏", desc: "Heavy protective armor. Evolves Rhydon into Rhyperior.", locations: ["Route 228", "Grand Underground mining"] },
+  { id: "reaper-cloth", name: "Reaper Cloth", category: "Evolution", icon: "👻", desc: "Imbued with spiritual power. Evolves Dusclops into Dusknoir.", locations: ["Route 229", "Turnback Cave"] },
+  { id: "prism-scale", name: "Prism Scale", category: "Evolution", icon: "🐟", desc: "Mysterious scale that radiates rainbow light. Evolves Feebas into Milotic.", locations: ["Mt. Coronet B1F water tile", "Pastoria City beach"] },
+  { id: "oval-stone", name: "Oval Stone", category: "Evolution", icon: "🥚", desc: "Round stone that evolves Happiny into Chansey when leveled up during the day.", locations: ["Lost Tower", "Held by wild Happiny/Chansey (50%)"] },
+  { id: "kings-rock", name: "King's Rock", category: "Evolution", icon: "👑", desc: "Evolves Poliwhirl into Politoed, and Slowpoke into Slowking. Gives attacks a 10% flinch rate.", locations: ["Wild Poliwhirl / Poliwrath (5%)", "Battle Park (32 BP)"] },
+  { id: "dragon-scale", name: "Dragon Scale", category: "Evolution", icon: "🐉", desc: "A thick and tough scale. Evolves Seadra into Kingdra.", locations: ["Held by wild Horsea/Seadra (5%)"] },
+  { id: "upgrade", name: "Up-Grade", category: "Evolution", icon: "💾", desc: "A transparent device packed with all sorts of data. Evolves Porygon into Porygon2.", locations: ["Team Galactic Eterna Building (from Prof. Oak)"] },
+  { id: "dubious-disc", name: "Dubious Disc", category: "Evolution", icon: "💿", desc: "A transparent device overflowing with dubious data. Evolves Porygon2 into Porygon-Z.", locations: ["Route 225 (requires Surf)"] },
+  { id: "deep-sea-tooth", name: "Deep Sea Tooth", category: "Evolution", icon: "🦷", desc: "Evolves Clamperl into Huntail. Doubles Clamperl's Special Attack while held.", locations: ["Held by wild Carvanha/Sharpedo (5%)"] },
+  { id: "deep-sea-scale", name: "Deep Sea Scale", category: "Evolution", icon: "🐚", desc: "Evolves Clamperl into Gorebyss. Doubles Clamperl's Special Defense while held.", locations: ["Held by wild Chinchou/Lanturn (5%)"] },
 
   // Competitive Battle Items
-  { id: "leftovers", name: "Leftovers", category: "Battle Item", icon: "≡ƒÑù", desc: "Restores 1/16th of maximum HP at the end of every turn.", locations: ["Held by wild Munchlax / Snorlax (100%)", "Victory Road hidden item"] },
-  { id: "life-orb", name: "Life Orb", category: "Battle Item", icon: "≡ƒö«", desc: "Boosts move power by 1.3x at the cost of 10% maximum HP per strike.", locations: ["Stark Mountain", "Battle Park (48 BP)"] },
-  { id: "focus-sash", name: "Focus Sash", category: "Battle Item", icon: "≡ƒÑï", desc: "Guarantees survival with 1 HP when hit by a lethal strike from full health.", locations: ["Route 221 (gift from NPC)", "Battle Park (48 BP)"] },
-  { id: "choice-band", name: "Choice Band", category: "Battle Item", icon: "≡ƒÑè", desc: "Boosts Attack by 1.5x, but locks the holder into using only one move.", locations: ["Battle Park (48 BP)", "Route 225"] },
-  { id: "choice-specs", name: "Choice Specs", category: "Battle Item", icon: "≡ƒæô", desc: "Boosts Special Attack by 1.5x, but locks the holder into using only one move.", locations: ["Celestic Town (Shop morning NPC)", "Battle Park (48 BP)"] },
-  { id: "choice-scarf", name: "Choice Scarf", category: "Battle Item", icon: "≡ƒºú", desc: "Boosts Speed by 1.5x, but locks the holder into using only one move.", locations: ["Galactic Veilstone HQ", "Battle Park (48 BP)"] },
-  { id: "heavy-duty-boots", name: "Heavy-Duty Boots", category: "Battle Item", icon: "≡ƒÑ╛", desc: "Protects the holder from the effects of entry hazards (Stealth Rock, Spikes, Toxic Spikes).", locations: ["Veilstone Dept Store (4F)", "Route 210 North"] },
-  { id: "assault-vest", name: "Assault Vest", category: "Battle Item", icon: "≡ƒª║", desc: "Boosts Special Defense by 1.5x, but prevents the use of status moves.", locations: ["Battle Park (48 BP)", "Snowpoint Temple"] },
-  { id: "toxic-orb", name: "Toxic Orb", category: "Battle Item", icon: "≡ƒº¬", desc: "Badly poisons the holder at the end of the first turn (Enables Poison Heal Gliscor and Guts wallbreakers).", locations: ["Battle Park (16 BP)", "Great Marsh (Safari Zone)"] },
-  { id: "flame-orb", name: "Flame Orb", category: "Battle Item", icon: "≡ƒöÑ", desc: "Burns the holder at the end of the first turn (Activates Guts Ursaluna/Heracross and Flare Boost).", locations: ["Battle Park (16 BP)", "Fuego Ironworks"] },
-  { id: "eviolite", name: "Eviolite", category: "Battle Item", icon: "≡ƒÆÄ", desc: "Boosts Defense and Special Defense by 1.5x for any Pok├⌐mon that can still evolve.", locations: ["Oreburgh Mine B2F", "Route 208 hiker gift"] }
+  { id: "leftovers", name: "Leftovers", category: "Battle Item", icon: "🥪", desc: "Restores 1/16th of maximum HP at the end of every turn.", locations: ["Held by wild Munchlax / Snorlax (100%)", "Victory Road hidden item"] },
+  { id: "life-orb", name: "Life Orb", category: "Battle Item", icon: "🔮", desc: "Boosts move power by 1.3x at the cost of 10% maximum HP per strike.", locations: ["Stark Mountain", "Battle Park (48 BP)"] },
+  { id: "focus-sash", name: "Focus Sash", category: "Battle Item", icon: "🥋", desc: "Guarantees survival with 1 HP when hit by a lethal strike from full health.", locations: ["Route 221 (gift from NPC)", "Battle Park (48 BP)"] },
+  { id: "choice-band", name: "Choice Band", category: "Battle Item", icon: "🥊", desc: "Boosts Attack by 1.5x, but locks the holder into using only one move.", locations: ["Battle Park (48 BP)", "Route 225"] },
+  { id: "choice-specs", name: "Choice Specs", category: "Battle Item", icon: "👓", desc: "Boosts Special Attack by 1.5x, but locks the holder into using only one move.", locations: ["Celestic Town (Shop morning NPC)", "Battle Park (48 BP)"] },
+  { id: "choice-scarf", name: "Choice Scarf", category: "Battle Item", icon: "🧣", desc: "Boosts Speed by 1.5x, but locks the holder into using only one move.", locations: ["Galactic Veilstone HQ", "Battle Park (48 BP)"] },
+  { id: "heavy-duty-boots", name: "Heavy-Duty Boots", category: "Battle Item", icon: "🥾", desc: "Protects the holder from the effects of entry hazards (Stealth Rock, Spikes, Toxic Spikes).", locations: ["Veilstone Dept Store (4F)", "Route 210 North"] },
+  { id: "assault-vest", name: "Assault Vest", category: "Battle Item", icon: "🦺", desc: "Boosts Special Defense by 1.5x, but prevents the use of status moves.", locations: ["Battle Park (48 BP)", "Snowpoint Temple"] },
+  { id: "toxic-orb", name: "Toxic Orb", category: "Battle Item", icon: "🧪", desc: "Badly poisons the holder at the end of the first turn (Enables Poison Heal Gliscor and Guts wallbreakers).", locations: ["Battle Park (16 BP)", "Great Marsh (Safari Zone)"] },
+  { id: "flame-orb", name: "Flame Orb", category: "Battle Item", icon: "🔥", desc: "Burns the holder at the end of the first turn (Activates Guts Ursaluna/Heracross and Flare Boost).", locations: ["Battle Park (16 BP)", "Fuego Ironworks"] },
+  { id: "eviolite", name: "Eviolite", category: "Battle Item", icon: "💎", desc: "Boosts Defense and Special Defense by 1.5x for any Pokémon that can still evolve.", locations: ["Oreburgh Mine B2F", "Route 208 hiker gift"] },
+  { id: "expert-belt", name: "Expert Belt", category: "Battle Item", icon: "🥋", desc: "Boosts the power of super-effective moves by 20% without taking recoil damage.", locations: ["Route 221 (from old man NPC)"] },
+  { id: "rocky-helmet", name: "Rocky Helmet", category: "Battle Item", icon: "🪖", desc: "If the holder is hit by a contact attack, the attacker takes damage equal to 1/6th of its maximum HP.", locations: ["Iron Island B2F", "Battle Park (48 BP)"] },
+  { id: "weakness-policy", name: "Weakness Policy", category: "Battle Item", icon: "📜", desc: "Sharply raises both Attack and Sp. Atk by +2 stages when hit by a super-effective move.", locations: ["Battle Park (48 BP)"] },
+  { id: "black-sludge", name: "Black Sludge", category: "Battle Item", icon: "🧪", desc: "Gradually restores 1/16th max HP to Poison-type Pokémon each turn; damages any other type.", locations: ["Held by wild Croagunk/Toxicroak/Grimer (5%)"] },
+  { id: "light-clay", name: "Light Clay", category: "Battle Item", icon: "🧱", desc: "Extends the duration of barrier moves like Reflect, Light Screen, and Aurora Veil from 5 to 8 turns.", locations: ["Mt. Coronet", "Grand Underground mining"] },
+  { id: "smooth-rock", name: "Smooth Rock", category: "Battle Item", icon: "🪨", desc: "Extends the duration of the Sandstorm weather created by the holder from 5 to 8 turns.", locations: ["Route 228", "Grand Underground mining"] },
+  { id: "heat-rock", name: "Heat Rock", category: "Battle Item", icon: "🪨", desc: "Extends the duration of Harsh Sunlight weather created by the holder from 5 to 8 turns.", locations: ["Route 214", "Grand Underground mining"] },
+  { id: "damp-rock", name: "Damp Rock", category: "Battle Item", icon: "🪨", desc: "Extends the duration of Rain weather created by the holder from 5 to 8 turns.", locations: ["Route 220", "Grand Underground mining"] },
+  { id: "icy-rock", name: "Icy Rock", category: "Battle Item", icon: "🪨", desc: "Extends the duration of Snow/Hail weather created by the holder from 5 to 8 turns.", locations: ["Route 217", "Grand Underground mining"] },
+  { id: "terrain-extender", name: "Terrain Extender", category: "Battle Item", icon: "📡", desc: "Extends the duration of Electric, Grassy, Misty, or Psychic Terrain from 5 to 8 turns.", locations: ["Battle Park (48 BP)"] },
+  { id: "air-balloon", name: "Air Balloon", category: "Battle Item", icon: "🎈", desc: "Makes the holder float in the air with Ground immunity until hit by an attack.", locations: ["Route 215", "Battle Park (32 BP)"] },
+  { id: "red-card", name: "Red Card", category: "Battle Item", icon: "🟥", desc: "A card with mysterious power. When hit by an attack, it instantly ejects the attacker from battle.", locations: ["Battle Park (32 BP)"] },
+  { id: "shed-shell", name: "Shed Shell", category: "Battle Item", icon: "🐚", desc: "Enables holder to switch out without fail, ignoring Shadow Tag, Arena Trap, and Magnet Pull.", locations: ["Route 228", "Wild Venomoth (5%)"] },
+  { id: "mental-herb", name: "Mental Herb", category: "Battle Item", icon: "🌿", desc: "Snaps holder out of infatuation and nullifies Taunt, Encore, Torment, Disable, and Heal Block.", locations: ["Route 216", "Battle Park (16 BP)"] },
+  { id: "white-herb", name: "White Herb", category: "Battle Item", icon: "🌿", desc: "Instantly restores all lowered stat stages back to normal once (ideal for Shell Smash or Close Combat).", locations: ["Route 217", "Battle Park (32 BP)"] },
+  { id: "power-herb", name: "Power Herb", category: "Battle Item", icon: "🌿", desc: "Allows charging attacks like Solar Beam, Meteor Beam, and Geomancy to strike in a single turn.", locations: ["Route 227", "Battle Park (32 BP)"] },
+  { id: "scope-lens", name: "Scope Lens", category: "Battle Item", icon: "🔍", desc: "A lens that improves vision. Boosts the holder's critical-hit ratio by 1 stage (+12.5%).", locations: ["Fight Area (from NPC)", "Battle Park (48 BP)"] },
+  { id: "wide-lens", name: "Wide Lens", category: "Battle Item", icon: "👓", desc: "A magnifying lens that boosts the accuracy of moves by 1.1x (10% higher hit chance).", locations: ["Veilstone Game Corner / Dept Store", "Route 215"] },
+  { id: "loaded-dice", name: "Loaded Dice", category: "Battle Item", icon: "🎲", desc: "Ensures multi-strike moves (Bullet Seed, Icicle Spear, Scale Shot) hit at least 4 or 5 times.", locations: ["Veilstone Dept Store (4F)"] },
+  { id: "punching-glove", name: "Punching Glove", category: "Battle Item", icon: "🥊", desc: "Boosts punching moves by 10% and prevents direct contact effects (Iron Barbs, Flame Body, Rocky Helmet).", locations: ["Veilstone Dept Store (4F)"] },
+  { id: "covert-cloak", name: "Covert Cloak", category: "Battle Item", icon: "🧥", desc: "Protects holder from secondary effects of attacks (burn from Scald, flinch from Fake Out).", locations: ["Veilstone Dept Store (4F)"] },
+  { id: "clear-amulet", name: "Clear Amulet", category: "Battle Item", icon: "🧿", desc: "Protects the holder from having its stats lowered by opponents' moves or abilities (like Intimidate).", locations: ["Battle Park (48 BP)"] },
+
+  // Competitive Berries
+  { id: "sitrus-berry", name: "Sitrus Berry", category: "Berry", icon: "🫐", desc: "Restores 25% of the holder's maximum HP when health drops below 50%. Essential staple.", locations: ["Berry trees across Sinnoh", "Pastoria City Berry Master"] },
+  { id: "lum-berry", name: "Lum Berry", category: "Berry", icon: "🍒", desc: "Instantly cures any status condition (Burn, Poison, Paralysis, Freeze, Sleep, or Confusion).", locations: ["Route 212 Berry Master", "Berry trees"] },
+  { id: "yache-berry", name: "Yache Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Ice-type attack by 50% (The signature survival item for Garchomp).", locations: ["Pastoria City Berry Master (daily gift)"] },
+  { id: "passho-berry", name: "Passho Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Water-type attack by 50% for Fire, Ground, or Rock Pokémon.", locations: ["Route 212 Berry Master"] },
+  { id: "rindo-berry", name: "Rindo Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Grass-type attack by 50% (Saves Swampert, Gastrodon, and Quagsire).", locations: ["Route 212 Berry Master"] },
+  { id: "chople-berry", name: "Chople Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Fighting-type attack by 50% (Used on Tyranitar, Blissey, Weavile).", locations: ["Route 212 Berry Master"] },
+  { id: "colbur-berry", name: "Colbur Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Dark-type attack by 50% for Psychic or Ghost Pokémon.", locations: ["Route 212 Berry Master"] },
+  { id: "shuca-berry", name: "Shuca Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Ground-type attack by 50% (Essential for Heatran and Magnezone).", locations: ["Route 212 Berry Master"] },
+  { id: "babiri-berry", name: "Babiri Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Steel-type attack by 50% (Protects Fairy, Ice, and Rock Pokémon).", locations: ["Route 212 Berry Master"] },
+  { id: "occa-berry", name: "Occa Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Fire-type attack by 50% (Guarantees survival for Scizor and Metagross).", locations: ["Route 212 Berry Master"] },
+  { id: "wacan-berry", name: "Wacan Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Electric-type attack by 50% (Signature defense for Gyarados).", locations: ["Route 212 Berry Master"] },
+  { id: "payapa-berry", name: "Payapa Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Psychic-type attack by 50% for Fighting and Poison Pokémon.", locations: ["Route 212 Berry Master"] },
+  { id: "coba-berry", name: "Coba Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Flying-type attack by 50% for Grass, Fighting, and Bug Pokémon.", locations: ["Route 212 Berry Master"] },
+  { id: "haban-berry", name: "Haban Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Dragon-type attack by 50% in Dragon mirror matches.", locations: ["Route 212 Berry Master"] },
+  { id: "kasib-berry", name: "Kasib Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Ghost-type attack by 50% for Ghost and Psychic Pokémon.", locations: ["Route 212 Berry Master"] },
+  { id: "roseli-berry", name: "Roseli Berry", category: "Berry", icon: "🫐", desc: "Weakens a super-effective Fairy-type attack by 50% for Dragon, Fighting, and Dark Pokémon.", locations: ["Route 212 Berry Master"] },
+  { id: "custap-berry", name: "Custap Berry", category: "Berry", icon: "🫐", desc: "Allows holder to strike first in their priority bracket once when HP falls below 25%.", locations: ["Battle Park (32 BP)"] },
+  { id: "salac-berry", name: "Salac Berry", category: "Berry", icon: "🫐", desc: "Sharply boosts holder's Speed by +1 stage in a pinch (below 25% max HP).", locations: ["Battle Park (32 BP)"] }
 ];
 
 // ==========================================
@@ -378,8 +443,7 @@ var BOSS_TEAMS_DATA = [
       { "name": "Garchomp", "lvl": 78, "types": ["Dragon", "Ground"], "item": "Yache Berry", "ability": "Rough Skin", "moves": ["Earthquake", "Dragon Claw", "Swords Dance", "Poison Jab"] }
     ]
   }
-]
-;
+];
 
 var ROUTES_DATA = [
   {
@@ -390,8 +454,8 @@ var ROUTES_DATA = [
     encounters: [
       { name: "Starly", method: "Walking", rate: "50%", lvls: "2-4", types: ["Normal", "Flying"] },
       { name: "Bidoof", method: "Walking", rate: "50%", lvls: "2-4", types: ["Normal"] },
-      { name: "NidoranΓÖÇ", method: "Pok├⌐ Radar", rate: "20%", lvls: "3-4", types: ["Poison"] },
-      { name: "NidoranΓÖé", method: "Pok├⌐ Radar", rate: "20%", lvls: "3-4", types: ["Poison"] }
+      { name: "Nidoran♀", method: "Poké Radar", rate: "20%", lvls: "3-4", types: ["Poison"] },
+      { name: "Nidoran♂", method: "Poké Radar", rate: "20%", lvls: "3-4", types: ["Poison"] }
     ]
   },
   {
@@ -404,7 +468,7 @@ var ROUTES_DATA = [
       { name: "Starly", method: "Walking", rate: "30%", lvls: "3-4", types: ["Normal", "Flying"] },
       { name: "Bidoof", method: "Walking", rate: "25%", lvls: "3-4", types: ["Normal"] },
       { name: "Kricketot", method: "Morning/Night", rate: "10%", lvls: "3-4", types: ["Bug"] },
-      { name: "Growlithe", method: "Pok├⌐ Radar", rate: "20%", lvls: "4-5", types: ["Fire"] }
+      { name: "Growlithe", method: "Poké Radar", rate: "20%", lvls: "4-5", types: ["Fire"] }
     ]
   },
   {
@@ -417,7 +481,7 @@ var ROUTES_DATA = [
       { name: "Buneary", method: "Walking", rate: "20%", lvls: "10-12", types: ["Normal"] },
       { name: "Gastly", method: "Walking (Night)", rate: "20%", lvls: "11-13", types: ["Ghost", "Poison"] },
       { name: "Misdreavus", method: "Walking (Night)", rate: "15%", lvls: "11-13", types: ["Ghost"] },
-      { name: "Slakoth", method: "Pok├⌐ Radar", rate: "20%", lvls: "12-14", types: ["Normal"] },
+      { name: "Slakoth", method: "Poké Radar", rate: "20%", lvls: "12-14", types: ["Normal"] },
       { name: "Decidueye (Hisui)", method: "Incense Burner (Day)", rate: "Special", lvls: "15+", types: ["Grass", "Fighting"] }
     ]
   },
@@ -472,9 +536,6 @@ var ROUTES_DATA = [
     ]
   }
 ];
-
-// Load National Pok├⌐dex dataset (493 Gen 1-4 species + Hisuian forms)
-// For space and efficiency, complete species list with full stats, typing, and abilities:
 
 window.TYPE_CHART = TYPE_CHART;
 window.ALL_TYPES = ALL_TYPES;

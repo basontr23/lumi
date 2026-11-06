@@ -733,6 +733,7 @@
             <button class="chip-btn" data-cat="Evolution">Evolution Items</button>
             <button class="chip-btn" data-cat="Key Mod Item">Key / Mod Items</button>
             <button class="chip-btn" data-cat="Battle Item">Battle & Competitive</button>
+            <button class="chip-btn" data-cat="Berry">Berries</button>
           </div>
         </div>
         <div id="items-cards-grid" class="items-grid"></div>
@@ -1231,6 +1232,20 @@
       type2Filter.appendChild(opt2);
     });
   }
+
+  window.onPokemonDataLoaded = function() {
+    const roster = getRoster();
+    if (roster && roster.length > 0 && (!state.pokemon || state.pokemon.length === 0)) {
+      state.pokemon = [...roster];
+      state.filteredPokemon = [...roster];
+      state.selectedPokemon = roster[0] || null;
+      populateFilters();
+      applyFilters();
+      if (state.pokemon.length > 0) {
+        selectPokemon(state.pokemon[0].id, window.innerWidth > 900);
+      }
+    }
+  };
 
   function init() {
     if (!state.pokemon || state.pokemon.length === 0) {
