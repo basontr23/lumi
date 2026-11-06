@@ -7,6 +7,27 @@
 (function () {
   'use strict';
 
+  // Boss Icon Map
+  const BOSS_ICONS = {
+    roark: '🪨',
+    gardenia: '🌿',
+    maylene: '🥊',
+    fantina: '👻',
+    'crasher-wake': '🌊',
+    byron: '🛡️',
+    candice: '❄️',
+    volkner: '⚡',
+    mars: '🪐',
+    jupiter: '☄️',
+    saturn: '🌌',
+    cyrus: '🌑',
+    aaron: '🐛',
+    bertha: '🏜️',
+    flint: '🔥',
+    lucian: '🔮',
+    cynthia: '👑'
+  };
+
   // State
   const state = {
     currentSection: 'pokedex', // 'pokedex', 'items', 'routes', 'bosses', 'levelcaps'
@@ -18,6 +39,7 @@
     type1: 'all',
     type2: 'all',
     gen: 'all',
+    locationFilter: 'all',
     onlyLumi: false,
     onlyHisui: false,
     sortBy: 'dex',
@@ -25,13 +47,16 @@
     isShiny: false,
     activeTab: 'level-up',
     team: JSON.parse(localStorage.getItem('lumi_team') || '[]'),
-    
+
     // Items state
     itemCategory: 'all',
     itemSearch: '',
 
+    // Bosses state
+    bossCategory: 'all',
+
     // Routes state
-    selectedRouteId: ROUTES_DATA[0].routeId
+    selectedRouteId: ROUTES_DATA && ROUTES_DATA[0] ? ROUTES_DATA[0].routeId : 'route-201'
   };
 
   // DOM Elements
@@ -41,6 +66,7 @@
   const type2Filter = document.getElementById('filter-type2');
   const genFilter = document.getElementById('filter-gen');
   const sortSelect = document.getElementById('sort-select');
+  const filterLocation = document.getElementById('filter-location');
   const chipLumi = document.getElementById('chip-lumi');
   const chipHisui = document.getElementById('chip-hisui');
   const viewToggleBtn = document.getElementById('view-toggle-btn');
@@ -55,11 +81,17 @@
   const closeTeamModal = document.getElementById('close-team-modal');
 
   // Sprite URL helper
-  function getSpriteUrl(pokemon, shiny = false) {
-    if (!pokemon) return '';
-    const rawName = pokemon.name.toLowerCase()
+  function getSpriteUrl(pokemonOrName, shiny = false) {
+    if (!pokemonOrName) return '';
+    const nameStr = typeof pokemonOrName === 'string' ? pokemonOrName : (pokemonOrName.name || '');
+    const rawName = nameStr.toLowerCase()
       .replace(' (hisui)', '-hisui')
       .replace(' (wash)', '-wash')
+      .replace(' (heat)', '-heat')
+      .replace(' (frost)', '-frost')
+      .replace(' (fan)', '-fan')
+      .replace(' (mow)', '-mow')
+      .replace(' (origin)', '-origin')
       .replace(/[^a-z0-9\-]/g, '');
 
     if (shiny) {
@@ -68,9 +100,17 @@
     return `https://play.pokemonshowdown.com/sprites/ani/${rawName}.gif`;
   }
 
-  function getFallbackSpriteUrl(pokemon) {
-    if (!pokemon) return '';
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id <= 493 ? pokemon.id : 387}.png`;
+  function getFallbackSpriteUrl(pokemonOrName) {
+    if (!pokemonOrName) return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png';
+    if (typeof pokemonOrName === 'object' && pokemonOrName.id) {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonOrName.id <= 493 ? pokemonOrName.id : 387}.png`;
+    }
+    const nameStr = typeof pokemonOrName === 'string' ? pokemonOrName : (pokemonOrName.name || '');
+    const found = POKEMON_DATA.find(p => p.name.toLowerCase() === nameStr.toLowerCase() || p.name.toLowerCase().startsWith(nameStr.toLowerCase()));
+    if (found) {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${found.id <= 493 ? found.id : 387}.png`;
+    }
+    return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png';
   }
 
   function getStatColor(val) {
@@ -150,6 +190,10 @@
         result = result.filter(p => p.generation === parseInt(state.gen, 10));
       }
     }
+    if (state.locationFilter && state.locationFilter !== 'all') {
+      const qLoc = state.locationFilter.toLowerCase();
+      result = result.filter(p => p.locations && p.locations.some(loc => loc.toLowerCase().includes(qLoc)));
+    }
     if (state.onlyLumi) {
       result = result.filter(p => p.isModified);
     }
@@ -198,7 +242,7 @@
 
     tableBody.innerHTML = state.filteredPokemon.map(p => {
       const isSelected = state.selectedPokemon && state.selectedPokemon.id === p.id;
-      const bstBadge = p.bstDiff !== 0
+      const bstBadge = p.bstDiff && p.bstDiff !== 0
         ? `<span>${p.bst} <small style="color:${p.bstDiff > 0 ? '#4ade80' : '#f87171'}">(${p.bstDiff > 0 ? '+' : ''}${p.bstDiff})</small></span>`
         : `<span>${p.bst}</span>`;
 
@@ -232,7 +276,7 @@
         </tr>`;
     }).join('');
 
-    document.querySelectorAll('.dex-row').forEach(row => {
+    tableBody.querySelectorAll('.dex-row').forEach(row => {
       row.addEventListener('click', () => {
         selectPokemon(parseInt(row.getAttribute('data-id'), 10));
       });
@@ -287,7 +331,7 @@
         </div>`;
     }).join('');
 
-    document.querySelectorAll('.pkmn-card').forEach(card => {
+    gridContainer.querySelectorAll('.pkmn-card').forEach(card => {
       card.addEventListener('click', () => {
         selectPokemon(parseInt(card.getAttribute('data-id'), 10));
       });
@@ -314,12 +358,18 @@
 
     renderDetailDrawer();
 
-    // AUTO-RESET SCROLL TO TOP IMMEDIATELY (Solves the exhausting scroll issue!)
-    detailDrawer.scrollTop = 0;
+    // AUTO-RESET SCROLL TO TOP IMMEDIATELY (Fixes the exhausting scroll issue!)
+    if (detailDrawer) {
+      detailDrawer.scrollTop = 0;
+    }
 
-    if (openDrawer) {
+    if (openDrawer && detailDrawer) {
       detailDrawer.classList.remove('collapsed');
-    } else {
+      // If mobile view, also scroll window top to make sure drawer is fully in viewport
+      if (window.innerWidth <= 900) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    } else if (detailDrawer) {
       if (window.innerWidth <= 900) {
         detailDrawer.classList.add('collapsed');
       } else {
@@ -328,16 +378,27 @@
     }
   }
 
+  // Helper: jump directly to a Pokémon in Dex from Boss / Routes / Team
+  function goToPokemonInDex(name) {
+    if (!name) return;
+    const clean = name.toLowerCase().trim();
+    const found = POKEMON_DATA.find(p => p.name.toLowerCase() === clean || p.name.toLowerCase().startsWith(clean));
+    if (found) {
+      switchSection('pokedex');
+      selectPokemon(found.id, true);
+    }
+  }
+
   // Render Detail Inspector
   function renderDetailDrawer() {
     const p = state.selectedPokemon;
-    if (!p) return;
+    if (!p || !detailDrawer) return;
 
     const spriteUrl = getSpriteUrl(p, state.isShiny);
     const fallbackUrl = getFallbackSpriteUrl(p);
 
     let lumiAlertHtml = '';
-    if (p.isModified || p.lumiChanges) {
+    if (p.isModified || (p.lumiChanges && p.lumiChanges.length > 0)) {
       const changesList = p.lumiChanges || [];
       lumiAlertHtml = `
         <div class="lumi-alert-box">
@@ -395,28 +456,76 @@
         </div>`;
     }).join('');
 
-    const moves = p.levelUpMoves || [
-      { lvl: 1, name: "Tackle / Strike", type: p.types[0], cat: "Physical", power: 40, acc: 100 },
-      { lvl: 15, name: "STAB Special Move", type: p.types[0], cat: "Special", power: 65, acc: 100 },
-      { lvl: 32, name: "Signature Move", type: p.types[0], cat: "Special", power: 90, acc: 100 },
-      { lvl: 50, name: "Ultimate Attack", type: p.types[1] || p.types[0], cat: "Physical", power: 120, acc: 90 }
-    ];
-
-    const movesHtml = moves.map(m => `
-      <tr>
-        <td style="font-family:monospace; font-weight:700; width:30px; color:var(--text-muted);">${m.lvl}</td>
-        <td>
-          <div style="display:flex; flex-direction:column;">
-            <span class="move-title">${m.name} ${m.isBuffed ? '<small style="color:#4ade80;">(Buffed)</small>' : ''}</span>
-            <span class="move-desc">${m.desc || ''}</span>
+    // Detailed Abilities from ABILITIES_DB
+    const abilitiesHtml = (p.abilities || []).map(a => {
+      const aKey = a.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const abInfo = (typeof ABILITIES_DB !== 'undefined' && ABILITIES_DB[aKey]) ? ABILITIES_DB[aKey] : null;
+      const desc = abInfo ? abInfo.desc : 'Provides unique combat mechanics and passive battle benefits.';
+      return `
+        <div class="ability-card-box">
+          <div class="ability-header-row">
+            <span class="ability-name-bold">${a}</span>
+            <span class="ability-tag-pill">Ability</span>
           </div>
-        </td>
-        <td style="width:50px;">${renderTypeBadges([m.type], 'sm')}</td>
-        <td style="font-family:monospace; text-align:right; width:35px;">${m.power || '-'}</td>
-        <td style="font-family:monospace; text-align:right; width:35px;">${m.acc ? m.acc + '%' : '-'}</td>
-      </tr>`).join('');
+          <div class="ability-desc-body">${desc}</div>
+        </div>`;
+    }).join('');
 
-    const locs = p.locations || ["Grand Underground / Roaming Wild"];
+    let hiddenAbilityHtml = '';
+    if (p.hiddenAbility && p.hiddenAbility !== 'None') {
+      const haKey = p.hiddenAbility.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const haInfo = (typeof ABILITIES_DB !== 'undefined' && ABILITIES_DB[haKey]) ? ABILITIES_DB[haKey] : null;
+      const haDesc = haInfo ? haInfo.desc : 'Special competitive ability unlocked via ability patch or rare encounters.';
+      hiddenAbilityHtml = `
+        <div class="ability-card-box ha-card">
+          <div class="ability-header-row">
+            <span class="ability-name-bold" style="color:var(--accent-gold);">${p.hiddenAbility}</span>
+            <span class="ability-tag-pill ha-pill">Hidden Ability (H)</span>
+          </div>
+          <div class="ability-desc-body">${haDesc}</div>
+        </div>`;
+    }
+
+    // Detailed Level-up Moves sorted by Level
+    const rawMoves = [...(p.levelUpMoves || [])].sort((a, b) => (a.lvl || 0) - (b.lvl || 0));
+    const movesHtml = rawMoves.map(m => {
+      const mKey = (m.moveId || m.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const moveData = (typeof MOVES_DB !== 'undefined' && MOVES_DB[mKey]) ? MOVES_DB[mKey] : m;
+
+      let catPill = '';
+      if (moveData.cat === 'Physical') catPill = '<span class="cat-pill cat-physical">💥 Phys</span>';
+      else if (moveData.cat === 'Special') catPill = '<span class="cat-pill cat-special">🌀 Spec</span>';
+      else if (moveData.cat === 'Status') catPill = '<span class="cat-pill cat-status">⚪ Stat</span>';
+
+      let extras = [];
+      if (moveData.priority && moveData.priority !== 0) extras.push(`${moveData.priority > 0 ? '+' : ''}${moveData.priority} Priority`);
+      if (moveData.contact) extras.push('Contact');
+      const extraInfo = extras.length > 0 ? ` <strong style="color:var(--accent-cyan); font-size:0.65rem;">[${extras.join(' • ')}]</strong>` : '';
+
+      const moveName = moveData.name || m.name || m.moveId;
+      const lvlLabel = m.lvl === 0 ? 'Evo' : (m.lvl === 1 ? '1' : m.lvl);
+
+      return `
+        <tr>
+          <td class="move-lvl-td">${lvlLabel}</td>
+          <td>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <div style="display:flex; align-items:center; gap:5px; flex-wrap:wrap;">
+                <span class="move-title">${moveName}</span>
+                ${catPill}
+                ${moveData.isBuffed ? '<span class="badge-tag lumi" style="font-size:0.6rem; padding:1px 4px;">BUFFED</span>' : ''}
+              </div>
+              <span class="move-desc-sub">${moveData.desc || ''}${extraInfo}</span>
+            </div>
+          </td>
+          <td style="width:50px;">${renderTypeBadges([moveData.type || p.types[0]], 'sm')}</td>
+          <td style="font-family:monospace; text-align:right; font-weight:700; width:38px;">${moveData.power || '—'}</td>
+          <td style="font-family:monospace; text-align:right; width:38px;">${moveData.acc ? moveData.acc + '%' : '—'}</td>
+          <td style="font-family:monospace; text-align:right; color:var(--text-muted); width:35px; font-size:0.75rem;">${moveData.pp ? moveData.pp : '—'}</td>
+        </tr>`;
+    }).join('');
+
+    const locs = p.locations && p.locations.length > 0 ? p.locations : ["Grand Underground / Roaming Wild"];
     const locsHtml = locs.map(loc => `
       <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:6px; padding:7px 9px; font-size:0.78rem; display:flex; align-items:center; gap:8px;">
         <span style="color:var(--accent-cyan);">📍</span>
@@ -468,30 +577,22 @@
         </div>
 
         <div class="detail-section">
-          <div class="section-title">Abilities & Info</div>
-          <div class="stats-table">
-            <div style="font-size:0.8rem;">
-              <strong style="color:var(--text-secondary);">Abilities:</strong> 
-              <span style="font-weight:700; color:var(--text-main);">${p.abilities.join(', ')}</span>
-            </div>
-            ${p.hiddenAbility && p.hiddenAbility !== 'None' ? `
-              <div style="font-size:0.8rem;">
-                <strong style="color:var(--text-secondary);">Hidden Ability:</strong> 
-                <span style="font-weight:700; color:var(--accent-cyan);">${p.hiddenAbility}</span>
-              </div>
-            ` : ''}
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; font-size:0.75rem; padding-top:4px; border-top:1px solid var(--border-color);">
-              <div><strong style="color:var(--text-muted);">Height:</strong> ${p.height}</div>
-              <div><strong style="color:var(--text-muted);">Weight:</strong> ${p.weight}</div>
-              <div><strong style="color:var(--text-muted);">Catch Rate:</strong> ${p.catchRate}</div>
-              <div><strong style="color:var(--text-muted);">Gender:</strong> ${p.genderRatio}</div>
+          <div class="section-title">Abilities & Mechanics</div>
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            ${abilitiesHtml}
+            ${hiddenAbilityHtml}
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:0.75rem; margin-top:8px; padding-top:8px; border-top:1px solid var(--border-color);">
+              <div><strong style="color:var(--text-muted);">Height:</strong> ${p.height || '—'}</div>
+              <div><strong style="color:var(--text-muted);">Weight:</strong> ${p.weight || '—'}</div>
+              <div><strong style="color:var(--text-muted);">Catch Rate:</strong> ${p.catchRate || '—'}</div>
+              <div><strong style="color:var(--text-muted);">Gender:</strong> ${p.genderRatio || '—'}</div>
             </div>
           </div>
         </div>
 
         <div class="detail-section">
           <div class="section-title">Evolution</div>
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:8px; padding:0.75rem; font-size:0.82rem; font-weight:700; text-align:center;">
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:8px; padding:0.75rem; font-size:0.82rem; font-weight:700; text-align:center; color:var(--accent-cyan);">
             ${p.evolution || 'No known evolutions'}
           </div>
         </div>
@@ -503,8 +604,8 @@
 
         <div class="detail-section">
           <div class="drawer-tabs">
-            <button class="tab-btn ${state.activeTab === 'level-up' ? 'active' : ''}" data-tab="level-up">Moves</button>
-            <button class="tab-btn ${state.activeTab === 'locations' ? 'active' : ''}" data-tab="locations">Locations</button>
+            <button class="tab-btn ${state.activeTab === 'level-up' ? 'active' : ''}" data-tab="level-up">Moves (${rawMoves.length})</button>
+            <button class="tab-btn ${state.activeTab === 'locations' ? 'active' : ''}" data-tab="locations">Locations (${locs.length})</button>
           </div>
 
           <div class="tab-content ${state.activeTab === 'level-up' ? 'active' : ''}" id="tab-level-up">
@@ -516,6 +617,7 @@
                   <th>Type</th>
                   <th style="text-align:right;">Pwr</th>
                   <th style="text-align:right;">Acc</th>
+                  <th style="text-align:right;">PP</th>
                 </tr>
               </thead>
               <tbody>${movesHtml}</tbody>
@@ -636,40 +738,107 @@
     if (!container) return;
 
     container.innerHTML = `
-      <div style="margin-bottom:0.75rem; color:var(--text-secondary); font-size:0.85rem;">
-        Detailed competitive rosters, levels, held items, abilities, and coverage movesets for every Gym Leader, Team Galactic Admin, and the Elite Four & Champion Cynthia.
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+        <div style="color:var(--text-secondary); font-size:0.85rem; max-width:650px;">
+          Detailed competitive rosters, levels, held items, abilities, and coverage movesets for every Gym Leader, Team Galactic Admin, and the Elite Four & Champion Cynthia. Click any Pokémon to view full Pokédex entry.
+        </div>
+        <div class="boss-category-tabs" style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+          <button class="chip-btn ${state.bossCategory === 'all' ? 'active' : ''}" data-boss-cat="all">All Battles (17)</button>
+          <button class="chip-btn ${state.bossCategory === 'gym' ? 'active' : ''}" data-boss-cat="gym">Gym Leaders (8)</button>
+          <button class="chip-btn ${state.bossCategory === 'galactic' ? 'active' : ''}" data-boss-cat="galactic">Team Galactic (4)</button>
+          <button class="chip-btn ${state.bossCategory === 'e4' ? 'active' : ''}" data-boss-cat="e4">Elite Four & Cynthia (5)</button>
+        </div>
       </div>
-      ${BOSS_TEAMS_DATA.map(boss => `
+      <div id="boss-cards-container" style="display:flex; flex-direction:column; gap:1.25rem;"></div>
+    `;
+
+    container.querySelectorAll('.boss-category-tabs .chip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.bossCategory = btn.getAttribute('data-boss-cat');
+        container.querySelectorAll('.boss-category-tabs .chip-btn').forEach(b => b.classList.toggle('active', b === btn));
+        renderBossCards();
+      });
+    });
+
+    renderBossCards();
+  }
+
+  function renderBossCards() {
+    const cardsContainer = document.getElementById('boss-cards-container');
+    if (!cardsContainer) return;
+
+    let bosses = [...BOSS_TEAMS_DATA];
+    if (state.bossCategory !== 'all') {
+      bosses = bosses.filter(b => b.category === state.bossCategory);
+    }
+
+    cardsContainer.innerHTML = bosses.map(boss => {
+      const icon = BOSS_ICONS[boss.bossId] || '⚔️';
+      return `
         <div class="boss-card">
           <div class="boss-card-header">
             <div class="boss-title-wrapper">
-              <span class="boss-icon">${boss.icon}</span>
+              <span class="boss-icon">${icon}</span>
               <div>
                 <div class="boss-name">${boss.name} — <span style="color:var(--accent-cyan);">${boss.title}</span></div>
                 <div class="boss-subtitle">${boss.badge} • Level Cap: <strong style="color:var(--accent-gold);">Lv. ${boss.levelCap}</strong></div>
               </div>
             </div>
+            <span class="badge-tag lumi" style="text-transform:uppercase; font-size:0.7rem; font-weight:700;">
+              ${boss.category === 'gym' ? 'Gym Leader' : (boss.category === 'galactic' ? 'Team Galactic' : 'Pokémon League')}
+            </span>
           </div>
           <div class="boss-quote">"${boss.quote}"</div>
           <div class="boss-team-grid">
-            ${boss.team.map(mon => `
-              <div class="boss-mon-card">
-                <div class="boss-mon-top">
-                  <span class="boss-mon-name">${mon.name}</span>
-                  <span class="boss-mon-lvl">Lv. ${mon.lvl}</span>
-                </div>
-                <div style="display:flex; gap:3px;">${renderTypeBadges(mon.types, 'sm')}</div>
-                <div class="boss-meta-line">
-                  <span><strong>Item:</strong> ${mon.item}</span>
-                  <span><strong>Ability:</strong> ${mon.ability}</span>
-                </div>
-                <div class="boss-moves-list">
-                  ${mon.moves.map(m => `<span class="boss-move-item" title="${m}">${m}</span>`).join('')}
-                </div>
-              </div>`).join('')}
+            ${boss.team.map(mon => {
+              const spriteUrl = getSpriteUrl(mon.name);
+              const fallbackUrl = getFallbackSpriteUrl(mon.name);
+              return `
+                <div class="boss-mon-card" data-mon-name="${mon.name}">
+                  <div class="boss-mon-header">
+                    <img class="boss-mon-sprite" src="${spriteUrl}" alt="${mon.name}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackUrl}'" />
+                    <div class="boss-mon-title">
+                      <div class="boss-mon-top">
+                        <span class="boss-mon-name" title="${mon.name}">${mon.name}</span>
+                        <span class="boss-mon-lvl">Lv. ${mon.lvl}</span>
+                      </div>
+                      <div style="display:flex; gap:3px;">${renderTypeBadges(mon.types, 'sm')}</div>
+                    </div>
+                  </div>
+
+                  <div class="boss-meta-line">
+                    <span class="boss-item-badge" title="Held Item">🎒 ${mon.item}</span>
+                    <span class="boss-ability-badge" title="Ability">⚡ ${mon.ability}</span>
+                  </div>
+
+                  <div class="boss-moves-list">
+                    ${mon.moves.map(m => {
+                      const mKey = m.toLowerCase().replace(/[^a-z0-9]/g, '');
+                      const mData = typeof MOVES_DB !== 'undefined' && MOVES_DB[mKey] ? MOVES_DB[mKey] : null;
+                      const catIcon = mData ? (mData.cat === 'Physical' ? '💥' : (mData.cat === 'Special' ? '🌀' : '⚪')) : '•';
+                      const moveType = mData ? mData.type : '';
+                      return `<span class="boss-move-item" title="${m} (${mData ? mData.cat + ', ' + moveType : 'Move'})">
+                        <span style="font-size:0.65rem;">${catIcon}</span>
+                        <span>${m}</span>
+                      </span>`;
+                    }).join('')}
+                  </div>
+
+                  <button class="boss-view-dex-btn" data-target-name="${mon.name}">
+                    🔍 View in Pokédex
+                  </button>
+                </div>`;
+            }).join('')}
           </div>
-        </div>`).join('')}
-    `;
+        </div>`;
+    }).join('');
+
+    cardsContainer.querySelectorAll('.boss-mon-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const monName = card.getAttribute('data-mon-name');
+        goToPokemonInDex(monName);
+      });
+    });
   }
 
   // ==========================================
@@ -717,7 +886,7 @@
 
     if (spawnsGrid) {
       spawnsGrid.innerHTML = currentRoute.encounters.map(sp => `
-        <div class="spawn-card">
+        <div class="spawn-card" style="cursor:pointer;" data-spawn-name="${sp.name}">
           <div class="spawn-info">
             <div class="spawn-name">${sp.name}</div>
             <div style="display:flex; gap:3px; margin:2px 0;">${renderTypeBadges(sp.types, 'sm')}</div>
@@ -728,6 +897,12 @@
           </div>
           <div class="spawn-rate">${sp.rate}</div>
         </div>`).join('');
+
+      spawnsGrid.querySelectorAll('.spawn-card').forEach(card => {
+        card.addEventListener('click', () => {
+          goToPokemonInDex(card.getAttribute('data-spawn-name'));
+        });
+      });
     }
   }
 
@@ -779,9 +954,13 @@
   }
 
   function updateTeamBtnBadge() {
-    teamBtn.innerHTML = `★ Team (${state.team.length}/6)`;
+    if (teamBtn) {
+      teamBtn.innerHTML = `★ Team (${state.team.length}/6)`;
+    }
     const mobileTeamBadge = document.querySelector('.mobile-nav-item[data-section="team"]');
-    if (mobileTeamBadge) mobileTeamBadge.querySelector('span:last-child').textContent = `Team (${state.team.length})`;
+    if (mobileTeamBadge) {
+      mobileTeamBadge.querySelector('span:last-child').textContent = `Team (${state.team.length})`;
+    }
   }
 
   function renderTeamModal() {
@@ -889,6 +1068,13 @@
     type2Filter.addEventListener('change', (e) => { state.type2 = e.target.value; applyFilters(); });
     genFilter.addEventListener('change', (e) => { state.gen = e.target.value; applyFilters(); });
     sortSelect.addEventListener('change', (e) => { state.sortBy = e.target.value; applyFilters(); });
+
+    if (filterLocation) {
+      filterLocation.addEventListener('change', (e) => {
+        state.locationFilter = e.target.value;
+        applyFilters();
+      });
+    }
 
     chipLumi.addEventListener('click', () => {
       state.onlyLumi = !state.onlyLumi;
