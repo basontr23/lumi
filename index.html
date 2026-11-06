@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Luminescent Platinum — Pokédex</title>
+  <meta name="description" content="Comprehensive Pokédex for Pokémon Luminescent Platinum featuring Drayano/Luminescent balance changes, stat buffs, typing changes, Hisuian forms, learnsets, and Grand Underground encounter locations. Styled after Radical Red Pokédex.">
+  <link rel="icon" href="https://luminescent.team/img/favicon.ico" type="image/x-icon">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/types.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <a href="#" class="brand">
+      <div class="brand-icon">💎</div>
+      <div class="brand-title">
+        LUMINESCENT <span>PLATINUM</span>
+        <span class="brand-badge">v2.2 DEX</span>
+      </div>
+    </a>
+
+    <div class="header-links">
+      <button class="header-btn" id="random-btn" title="Pick a random Pokémon">
+        🎲 Random
+      </button>
+      <button class="header-btn" id="view-toggle-btn" title="Toggle between Table and Grid view">
+        ⊞ Grid View
+      </button>
+      <button class="header-btn" id="team-btn" title="Open Team Planner">
+        ★ Team (0/6)
+      </button>
+      <a href="https://luminescent.team/docs" target="_blank" rel="noopener noreferrer" class="header-btn" title="Open Official Luminescent Docs">
+        📖 Official Docs ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- Control & Filter Bar -->
+  <div class="control-bar">
+    <div class="search-row">
+      <div class="search-box-wrapper">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Search by Pokémon name, type, ability, move, or route... (Press '/' to focus)" 
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button id="clear-search-btn" class="clear-search-btn" title="Clear Search">✕</button>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <select id="filter-type1" class="select-filter" title="Filter by primary type">
+        <option value="all">Type 1: All</option>
+      </select>
+
+      <select id="filter-type2" class="select-filter" title="Filter by secondary type">
+        <option value="all">Type 2: All</option>
+        <option value="None">Type 2: None (Mono)</option>
+      </select>
+
+      <select id="filter-gen" class="select-filter" title="Filter by generation">
+        <option value="all">All Generations</option>
+        <option value="4">Gen 4 (Sinnoh)</option>
+        <option value="1">Gen 1 (Kanto)</option>
+        <option value="2">Gen 2 (Johto)</option>
+        <option value="3">Gen 3 (Hoenn)</option>
+        <option value="Hisui">Hisuian / Regional</option>
+      </select>
+
+      <select id="sort-select" class="select-filter" title="Sort order">
+        <option value="dex">Sort: Dex Number</option>
+        <option value="name">Sort: Name (A-Z)</option>
+        <option value="bst">Sort: Base Stat Total</option>
+        <option value="hp">Sort: HP</option>
+        <option value="atk">Sort: Attack</option>
+        <option value="def">Sort: Defense</option>
+        <option value="spa">Sort: Sp. Atk</option>
+        <option value="spd">Sort: Sp. Def</option>
+        <option value="spe">Sort: Speed</option>
+      </select>
+
+      <div class="filter-chips">
+        <button id="chip-lumi" class="chip-btn" title="Show only Pokémon modified in Luminescent Platinum">
+          ✨ Lumi Changes Only
+        </button>
+        <button id="chip-hisui" class="chip-btn" title="Show only Hisuian / Regional variant Pokémon">
+          🏔️ Hisuian Forms
+        </button>
+      </div>
+
+      <div class="stats-counter" id="results-count">Loading Pokémon...</div>
+    </div>
+  </div>
+
+  <!-- Main Content Layout -->
+  <div class="app-container">
+    <main class="main-content">
+      <!-- Table View (YdaDex Spreadsheet Style) -->
+      <div id="table-container" class="dex-table-container">
+        <table class="dex-table">
+          <thead>
+            <tr>
+              <th data-sort="dex" style="width: 55px;">#</th>
+              <th style="width: 55px; text-align: center;">Sprite</th>
+              <th data-sort="name">Name</th>
+              <th>Types</th>
+              <th>Abilities</th>
+              <th data-sort="hp" class="stat-cell" title="Hit Points">HP</th>
+              <th data-sort="atk" class="stat-cell" title="Attack">Atk</th>
+              <th data-sort="def" class="stat-cell" title="Defense">Def</th>
+              <th data-sort="spa" class="stat-cell" title="Special Attack">SpA</th>
+              <th data-sort="spd" class="stat-cell" title="Special Defense">SpD</th>
+              <th data-sort="spe" class="stat-cell" title="Speed">Spe</th>
+              <th data-sort="bst" class="bst-cell" title="Base Stat Total">BST</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Rendered by app.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Grid Cards View -->
+      <div id="grid-container" class="dex-grid" style="display: none;">
+        <!-- Rendered by app.js -->
+      </div>
+    </main>
+
+    <!-- Detail Drawer Inspector -->
+    <aside id="detail-drawer" class="detail-drawer">
+      <!-- Rendered dynamically by app.js -->
+    </aside>
+  </div>
+
+  <!-- Team Planner Modal -->
+  <div id="team-modal" class="team-modal">
+    <div class="team-modal-content">
+      <div class="drawer-header">
+        <div style="font-weight: 800; font-size: 1.1rem; color: var(--accent-cyan);">
+          ★ Luminescent Platinum — Team Planner
+        </div>
+        <button class="drawer-close-btn" id="close-team-modal">✕</button>
+      </div>
+      <div style="padding: 1rem 1.25rem 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+        Select any Pokémon from the Pokédex and click <strong>"+ Add to Team"</strong> in the detail panel to build your dream squad for tackling Sinnoh Gym Leaders and the Elite Four.
+      </div>
+      <div id="team-slots" class="team-slots-grid">
+        <!-- Rendered by app.js -->
+      </div>
+      <div style="padding: 0 1.25rem 1.25rem; font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+        <span>Team saves automatically to your browser storage.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

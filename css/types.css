@@ -1,0 +1,131 @@
+/* Pokemon Type Badges & Authentic Color Palette */
+:root {
+  --type-normal: #9fa19f;
+  --type-fire: #e62829;
+  --type-water: #2980ef;
+  --type-grass: #3fa129;
+  --type-electric: #fac000;
+  --type-ice: #3dcef3;
+  --type-fighting: #ff8000;
+  --type-poison: #9141cb;
+  --type-ground: #915121;
+  --type-flying: #81b9ef;
+  --type-psychic: #ef4179;
+  --type-bug: #91a119;
+  --type-rock: #afa981;
+  --type-ghost: #704170;
+  --type-dragon: #5060e1;
+  --type-steel: #60a1b8;
+  --type-dark: #50413f;
+  --type-fairy: #ef70ef;
+
+  /* Categories */
+  --cat-physical: #e76f51;
+  --cat-special: #457b9d;
+  --cat-status: #8d99ae;
+}
+
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease, filter 0.15s ease;
+  user-select: none;
+  min-width: 54px;
+}
+
+.type-badge:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.type-badge.sm {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  min-width: 44px;
+}
+
+.type-badge.lg {
+  font-size: 0.85rem;
+  padding: 5px 12px;
+  min-width: 68px;
+  border-radius: 6px;
+}
+
+/* Specific type classes */
+.type-normal   { background: linear-gradient(135deg, #a8a878, #8a8a59); }
+.type-fire     { background: linear-gradient(135deg, #f08030, #dd6610); }
+.type-water    { background: linear-gradient(135deg, #6890f0, #386ceb); }
+.type-grass    { background: linear-gradient(135deg, #78c850, #57ab2f); }
+.type-electric { background: linear-gradient(135deg, #f8d030, #e0b810); color: #222; text-shadow: none; }
+.type-ice      { background: linear-gradient(135deg, #98d8d8, #69c6c6); color: #111; text-shadow: none; }
+.type-fighting { background: linear-gradient(135deg, #c03028, #99241e); }
+.type-poison   { background: linear-gradient(135deg, #a040a0, #802880); }
+.type-ground   { background: linear-gradient(135deg, #e0c068, #c8a038); }
+.type-flying   { background: linear-gradient(135deg, #a890f0, #8565e6); }
+.type-psychic  { background: linear-gradient(135deg, #f85888, #e83068); }
+.type-bug      { background: linear-gradient(135deg, #a8b820, #8d9a1b); }
+.type-rock     { background: linear-gradient(135deg, #b8a038, #93802d); }
+.type-ghost    { background: linear-gradient(135deg, #705898, #553e7d); }
+.type-dragon   { background: linear-gradient(135deg, #7038f8, #4c11eb); }
+.type-steel    { background: linear-gradient(135deg, #b8b8d0, #9797ba); color: #222; text-shadow: none; }
+.type-dark     { background: linear-gradient(135deg, #705848, #513f34); }
+.type-fairy    { background: linear-gradient(135deg, #ee99ac, #e7738c); }
+
+/* Move Categories */
+.cat-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.cat-physical { background: var(--cat-physical); }
+.cat-special  { background: var(--cat-special); }
+.cat-status   { background: var(--cat-status); }
+
+/* Custom Badge Tags */
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-tag.lumi {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.badge-tag.hisui {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.badge-tag.buff {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
