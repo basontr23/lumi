@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokémon Luminescent Platinum — Pokédex</title>
-  <meta name="description" content="Comprehensive Pokédex for Pokémon Luminescent Platinum featuring Drayano/Luminescent balance changes, stat buffs, typing changes, Hisuian forms, learnsets, and Grand Underground encounter locations. Styled after Radical Red Pokédex.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#121824">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Pokémon Luminescent Platinum — Pokédex & Companion</title>
+  <meta name="description" content="Comprehensive Pokédex, Items Database, Boss Battle Rosters, Route Encounters, and Level Cap Tracker for Pokémon Luminescent Platinum v2.2. Styled after Radical Red Pokédex.">
   <link rel="icon" href="https://luminescent.team/img/favicon.ico" type="image/x-icon">
   
   <!-- CSS Stylesheets -->
@@ -23,7 +26,17 @@
       </div>
     </a>
 
-    <div class="header-links">
+    <!-- Desktop Navigation Tabs -->
+    <nav class="top-nav">
+      <button class="nav-tab-btn active" data-section="pokedex">📖 Pokédex</button>
+      <button class="nav-tab-btn" data-section="items">🎒 Items</button>
+      <button class="nav-tab-btn" data-section="routes">🗺️ Route Explorer</button>
+      <button class="nav-tab-btn" data-section="bosses">⚔️ Boss Battles</button>
+      <button class="nav-tab-btn" data-section="levelcaps">📊 Level Caps</button>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
       <button class="header-btn" id="random-btn" title="Pick a random Pokémon">
         🎲 Random
       </button>
@@ -34,129 +47,200 @@
         ★ Team (0/6)
       </button>
       <a href="https://luminescent.team/docs" target="_blank" rel="noopener noreferrer" class="header-btn" title="Open Official Luminescent Docs">
-        📖 Official Docs ↗
+        📖 Docs ↗
       </a>
     </div>
   </header>
 
-  <!-- Control & Filter Bar -->
-  <div class="control-bar">
-    <div class="search-row">
-      <div class="search-box-wrapper">
-        <span class="search-icon">🔍</span>
-        <input 
-          type="text" 
-          id="search-input" 
-          class="search-input" 
-          placeholder="Search by Pokémon name, type, ability, move, or route... (Press '/' to focus)" 
-          autocomplete="off"
-          spellcheck="false"
-        >
-        <button id="clear-search-btn" class="clear-search-btn" title="Clear Search">✕</button>
-      </div>
-    </div>
-
-    <div class="filter-row">
-      <select id="filter-type1" class="select-filter" title="Filter by primary type">
-        <option value="all">Type 1: All</option>
-      </select>
-
-      <select id="filter-type2" class="select-filter" title="Filter by secondary type">
-        <option value="all">Type 2: All</option>
-        <option value="None">Type 2: None (Mono)</option>
-      </select>
-
-      <select id="filter-gen" class="select-filter" title="Filter by generation">
-        <option value="all">All Generations</option>
-        <option value="4">Gen 4 (Sinnoh)</option>
-        <option value="1">Gen 1 (Kanto)</option>
-        <option value="2">Gen 2 (Johto)</option>
-        <option value="3">Gen 3 (Hoenn)</option>
-        <option value="Hisui">Hisuian / Regional</option>
-      </select>
-
-      <select id="sort-select" class="select-filter" title="Sort order">
-        <option value="dex">Sort: Dex Number</option>
-        <option value="name">Sort: Name (A-Z)</option>
-        <option value="bst">Sort: Base Stat Total</option>
-        <option value="hp">Sort: HP</option>
-        <option value="atk">Sort: Attack</option>
-        <option value="def">Sort: Defense</option>
-        <option value="spa">Sort: Sp. Atk</option>
-        <option value="spd">Sort: Sp. Def</option>
-        <option value="spe">Sort: Speed</option>
-      </select>
-
-      <div class="filter-chips">
-        <button id="chip-lumi" class="chip-btn" title="Show only Pokémon modified in Luminescent Platinum">
-          ✨ Lumi Changes Only
-        </button>
-        <button id="chip-hisui" class="chip-btn" title="Show only Hisuian / Regional variant Pokémon">
-          🏔️ Hisuian Forms
-        </button>
-      </div>
-
-      <div class="stats-counter" id="results-count">Loading Pokémon...</div>
-    </div>
-  </div>
-
   <!-- Main Content Layout -->
   <div class="app-container">
-    <main class="main-content">
-      <!-- Table View (YdaDex Spreadsheet Style) -->
-      <div id="table-container" class="dex-table-container">
-        <table class="dex-table">
-          <thead>
-            <tr>
-              <th data-sort="dex" style="width: 55px;">#</th>
-              <th style="width: 55px; text-align: center;">Sprite</th>
-              <th data-sort="name">Name</th>
-              <th>Types</th>
-              <th>Abilities</th>
-              <th data-sort="hp" class="stat-cell" title="Hit Points">HP</th>
-              <th data-sort="atk" class="stat-cell" title="Attack">Atk</th>
-              <th data-sort="def" class="stat-cell" title="Defense">Def</th>
-              <th data-sort="spa" class="stat-cell" title="Special Attack">SpA</th>
-              <th data-sort="spd" class="stat-cell" title="Special Defense">SpD</th>
-              <th data-sort="spe" class="stat-cell" title="Speed">Spe</th>
-              <th data-sort="bst" class="bst-cell" title="Base Stat Total">BST</th>
-            </tr>
-          </thead>
-          <tbody id="table-body">
-            <!-- Rendered by app.js -->
-          </tbody>
-        </table>
-      </div>
+    
+    <!-- 1. POKÉDEX SECTION -->
+    <section id="section-pokedex" class="app-section active">
+      <div class="pokedex-split-container">
+        <div class="pokedex-left-col">
+          
+          <!-- Control & Filter Bar -->
+          <div class="control-bar">
+            <div class="search-row">
+              <div class="search-box-wrapper">
+                <span class="search-icon">🔍</span>
+                <input 
+                  type="text" 
+                  id="search-input" 
+                  class="search-input" 
+                  placeholder="Search Pokémon, types, abilities, moves, routes... (Press '/' to focus)" 
+                  autocomplete="off" 
+                  autocapitalize="none"
+                  spellcheck="false"
+                >
+                <button id="clear-search-btn" class="clear-search-btn" title="Clear Search">✕</button>
+              </div>
+            </div>
 
-      <!-- Grid Cards View -->
-      <div id="grid-container" class="dex-grid" style="display: none;">
-        <!-- Rendered by app.js -->
-      </div>
-    </main>
+            <div class="filter-row">
+              <select id="filter-type1" class="select-filter" title="Filter by primary type">
+                <option value="all">Type 1: All</option>
+              </select>
 
-    <!-- Detail Drawer Inspector -->
-    <aside id="detail-drawer" class="detail-drawer">
-      <!-- Rendered dynamically by app.js -->
-    </aside>
+              <select id="filter-type2" class="select-filter" title="Filter by secondary type">
+                <option value="all">Type 2: All</option>
+                <option value="None">Type 2: None (Mono)</option>
+              </select>
+
+              <select id="filter-gen" class="select-filter" title="Filter by generation">
+                <option value="all">All Generations</option>
+                <option value="4">Gen 4 (Sinnoh)</option>
+                <option value="1">Gen 1 (Kanto)</option>
+                <option value="2">Gen 2 (Johto)</option>
+                <option value="3">Gen 3 (Hoenn)</option>
+                <option value="Hisui">Hisuian / Regional</option>
+              </select>
+
+              <select id="sort-select" class="select-filter" title="Sort order">
+                <option value="dex">Sort: Dex Number</option>
+                <option value="name">Sort: Name (A-Z)</option>
+                <option value="bst">Sort: Base Stat Total</option>
+                <option value="hp">Sort: HP</option>
+                <option value="atk">Sort: Attack</option>
+                <option value="def">Sort: Defense</option>
+                <option value="spa">Sort: Sp. Atk</option>
+                <option value="spd">Sort: Sp. Def</option>
+                <option value="spe">Sort: Speed</option>
+              </select>
+
+              <div class="filter-chips">
+                <button id="chip-lumi" class="chip-btn" title="Show only Pokémon modified in Luminescent Platinum">
+                  ✨ Lumi Changes Only
+                </button>
+                <button id="chip-hisui" class="chip-btn" title="Show only Hisuian / Regional variant Pokémon">
+                  🏔️ Hisuian Forms
+                </button>
+              </div>
+
+              <div class="stats-counter" id="results-count">Loading Pokémon...</div>
+            </div>
+          </div>
+
+          <!-- Main Scrollable Content -->
+          <main class="main-content">
+            <!-- Table View (Desktop & Tablet) -->
+            <div id="table-container" class="dex-table-container">
+              <table class="dex-table">
+                <thead>
+                  <tr>
+                    <th data-sort="dex" style="width: 55px;">#</th>
+                    <th style="width: 55px; text-align: center;">Sprite</th>
+                    <th data-sort="name">Name</th>
+                    <th>Types</th>
+                    <th>Abilities</th>
+                    <th data-sort="hp" class="stat-cell" title="Hit Points">HP</th>
+                    <th data-sort="atk" class="stat-cell" title="Attack">Atk</th>
+                    <th data-sort="def" class="stat-cell" title="Defense">Def</th>
+                    <th data-sort="spa" class="stat-cell" title="Special Attack">SpA</th>
+                    <th data-sort="spd" class="stat-cell" title="Special Defense">SpD</th>
+                    <th data-sort="spe" class="stat-cell" title="Speed">Spe</th>
+                    <th data-sort="bst" class="bst-cell" title="Base Stat Total">BST</th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                  <!-- Rendered dynamically by app.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Grid Cards View (Default on Mobile) -->
+            <div id="grid-container" class="dex-grid" style="display: none;">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+          </main>
+        </div>
+
+        <!-- Detail Drawer Inspector -->
+        <aside id="detail-drawer" class="detail-drawer collapsed">
+          <!-- Rendered dynamically by app.js -->
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. ITEMS SECTION -->
+    <section id="section-items" class="app-section">
+      <div class="items-container" id="items-content">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- 3. ROUTE EXPLORER SECTION -->
+    <section id="section-routes" class="app-section">
+      <div class="routes-container" id="routes-content">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- 4. BOSS BATTLES SECTION -->
+    <section id="section-bosses" class="app-section">
+      <div class="bosses-container" id="bosses-content">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- 5. LEVEL CAPS SECTION -->
+    <section id="section-levelcaps" class="app-section">
+      <div class="levelcaps-container" id="levelcaps-content">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
   </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav">
+    <button class="mobile-nav-item active" data-section="pokedex">
+      <span class="nav-icon">📖</span>
+      <span>Dex</span>
+    </button>
+    <button class="mobile-nav-item" data-section="items">
+      <span class="nav-icon">🎒</span>
+      <span>Items</span>
+    </button>
+    <button class="mobile-nav-item" data-section="routes">
+      <span class="nav-icon">🗺️</span>
+      <span>Routes</span>
+    </button>
+    <button class="mobile-nav-item" data-section="bosses">
+      <span class="nav-icon">⚔️</span>
+      <span>Bosses</span>
+    </button>
+    <button class="mobile-nav-item" data-section="levelcaps">
+      <span class="nav-icon">📊</span>
+      <span>Caps</span>
+    </button>
+    <button class="mobile-nav-item" data-section="team">
+      <span class="nav-icon">★</span>
+      <span>Team (0)</span>
+    </button>
+  </nav>
 
   <!-- Team Planner Modal -->
   <div id="team-modal" class="team-modal">
     <div class="team-modal-content">
       <div class="drawer-header">
-        <div style="font-weight: 800; font-size: 1.1rem; color: var(--accent-cyan);">
-          ★ Luminescent Platinum — Team Planner
+        <div style="font-weight: 800; font-size: 1.1rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 6px;">
+          <span>★</span> Team Planner & Synergy Analyzer
         </div>
         <button class="drawer-close-btn" id="close-team-modal">✕</button>
       </div>
-      <div style="padding: 1rem 1.25rem 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
-        Select any Pokémon from the Pokédex and click <strong>"+ Add to Team"</strong> in the detail panel to build your dream squad for tackling Sinnoh Gym Leaders and the Elite Four.
+      <div style="padding: 1rem 1.25rem 0.5rem; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">
+        Build your 6-Pokémon squad for Sinnoh Gyms, Team Galactic, and Champion Cynthia. Tap <strong>"+ Add to Team"</strong> on any Pokémon profile to add them.
       </div>
       <div id="team-slots" class="team-slots-grid">
-        <!-- Rendered by app.js -->
+        <!-- Rendered dynamically by app.js -->
+      </div>
+      <div id="team-synergy-matrix" class="synergy-matrix-box">
+        <!-- Rendered dynamically by app.js -->
       </div>
       <div style="padding: 0 1.25rem 1.25rem; font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between;">
-        <span>Team saves automatically to your browser storage.</span>
+        <span>💾 Saves automatically to browser storage.</span>
       </div>
     </div>
   </div>
