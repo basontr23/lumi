@@ -47,6 +47,7 @@
     isShiny: false,
     activeTab: 'level-up',
     team: JSON.parse(localStorage.getItem('lumi_team') || '[]'),
+    renderLimit: 50,
 
     // Items state
     itemCategory: 'all',
@@ -111,6 +112,12 @@
       return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${found.id <= 493 ? found.id : 387}.png`;
     }
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png';
+  }
+
+  function getListSpriteUrl(p) {
+    if (!p) return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png';
+    const id = p.id <= 493 ? p.id : 387;
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   }
 
   function getStatColor(val) {
@@ -221,6 +228,7 @@
     });
 
     state.filteredPokemon = result;
+    state.renderLimit = 50;
     resultsCount.textContent = `${result.length} Pokémon found`;
 
     renderList();
@@ -240,7 +248,8 @@
       return;
     }
 
-    tableBody.innerHTML = state.filteredPokemon.map(p => {
+    const visible = state.filteredPokemon.slice(0, state.renderLimit);
+    let html = visible.map(p => {
       const isSelected = state.selectedPokemon && state.selectedPokemon.id === p.id;
       const bstBadge = p.bstDiff && p.bstDiff !== 0
         ? `<span>${p.bst} <small style="color:${p.bstDiff > 0 ? '#4ade80' : '#f87171'}">(${p.bstDiff > 0 ? '+' : ''}${p.bstDiff})</small></span>`
@@ -250,7 +259,7 @@
         <tr class="dex-row ${isSelected ? 'selected' : ''}" data-id="${p.id}">
           <td class="dex-num-cell">${p.dexNum}</td>
           <td class="dex-sprite-cell">
-            <img class="dex-sprite-img" src="${getSpriteUrl(p, false)}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='${getFallbackSpriteUrl(p)}'" />
+            <img class="dex-sprite-img" src="${getListSpriteUrl(p)}" alt="${p.name}" loading="lazy" decoding="async" />
           </td>
           <td class="dex-name-cell">
             <div class="dex-name-wrapper">
@@ -276,11 +285,32 @@
         </tr>`;
     }).join('');
 
+    if (state.renderLimit < state.filteredPokemon.length) {
+      html += `
+        <tr id="load-more-row">
+          <td colspan="12" style="text-align:center; padding:1.25rem;">
+            <button id="load-more-btn" class="header-btn" style="padding:8px 24px; font-size:0.85rem; margin:0 auto; cursor:pointer;">
+              Load More (${visible.length} of ${state.filteredPokemon.length})
+            </button>
+          </td>
+        </tr>`;
+    }
+
+    tableBody.innerHTML = html;
+
     tableBody.querySelectorAll('.dex-row').forEach(row => {
       row.addEventListener('click', () => {
         selectPokemon(parseInt(row.getAttribute('data-id'), 10));
       });
     });
+
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        state.renderLimit += 50;
+        renderTableView();
+      });
+    }
   }
 
   function renderGridView() {
@@ -292,7 +322,8 @@
       return;
     }
 
-    gridContainer.innerHTML = state.filteredPokemon.map(p => {
+    const visible = state.filteredPokemon.slice(0, state.renderLimit);
+    let html = visible.map(p => {
       const isSelected = state.selectedPokemon && state.selectedPokemon.id === p.id;
       return `
         <div class="pkmn-card ${isSelected ? 'selected' : ''}" data-id="${p.id}">
@@ -304,7 +335,7 @@
             </div>
           </div>
           <div class="card-center">
-            <img class="card-sprite" src="${getSpriteUrl(p, false)}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='${getFallbackSpriteUrl(p)}'" />
+            <img class="card-sprite" src="${getListSpriteUrl(p)}" alt="${p.name}" loading="lazy" decoding="async" />
             <div class="card-info">
               <div class="card-name">${p.name}</div>
               <div class="card-types">${renderTypeBadges(p.types, 'sm')}</div>
@@ -331,11 +362,30 @@
         </div>`;
     }).join('');
 
+    if (state.renderLimit < state.filteredPokemon.length) {
+      html += `
+        <div id="load-more-grid" style="grid-column:1/-1; text-align:center; padding:1.25rem;">
+          <button id="load-more-btn-grid" class="header-btn" style="padding:8px 24px; font-size:0.85rem; margin:0 auto; cursor:pointer;">
+            Load More (${visible.length} of ${state.filteredPokemon.length})
+          </button>
+        </div>`;
+    }
+
+    gridContainer.innerHTML = html;
+
     gridContainer.querySelectorAll('.pkmn-card').forEach(card => {
       card.addEventListener('click', () => {
         selectPokemon(parseInt(card.getAttribute('data-id'), 10));
       });
     });
+
+    const loadMoreGrid = document.getElementById('load-more-btn-grid');
+    if (loadMoreGrid) {
+      loadMoreGrid.addEventListener('click', () => {
+        state.renderLimit += 50;
+        renderGridView();
+      });
+    }
   }
 
   function renderList() {
@@ -1050,11 +1100,27 @@
       });
     });
 
+    let searchTimeout = null;
     searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
       state.searchQuery = e.target.value;
       clearSearchBtn.style.display = state.searchQuery ? 'block' : 'none';
-      applyFilters();
+      searchTimeout = setTimeout(() => {
+        applyFilters();
+      }, 120);
     });
+
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.addEventListener('scroll', () => {
+        if (state.currentSection === 'pokedex' && state.renderLimit < state.filteredPokemon.length) {
+          if (mainContent.scrollTop + mainContent.clientHeight >= mainContent.scrollHeight - 400) {
+            state.renderLimit += 40;
+            renderList();
+          }
+        }
+      });
+    }
 
     clearSearchBtn.addEventListener('click', () => {
       searchInput.value = '';
