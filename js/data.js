@@ -464,9 +464,10 @@ var ROUTES_DATA = [
     region: "Sinnoh Surface",
     type: "Path",
     encounters: [
-      { name: "Shinx", method: "Walking", rate: "35%", lvls: "3-5", types: ["Electric"] },
-      { name: "Starly", method: "Walking", rate: "30%", lvls: "3-4", types: ["Normal", "Flying"] },
-      { name: "Bidoof", method: "Walking", rate: "25%", lvls: "3-4", types: ["Normal"] },
+      { name: "Shinx", method: "Walking", rate: "30%", lvls: "3-5", types: ["Electric"] },
+      { name: "Starly", method: "Walking", rate: "25%", lvls: "3-4", types: ["Normal", "Flying"] },
+      { name: "Bidoof", method: "Walking", rate: "20%", lvls: "3-4", types: ["Normal"] },
+      { name: "Houndour", method: "Walking (Night)", rate: "15%", lvls: "3-5", types: ["Dark", "Fire"] },
       { name: "Kricketot", method: "Morning/Night", rate: "10%", lvls: "3-4", types: ["Bug"] },
       { name: "Growlithe", method: "Poké Radar", rate: "20%", lvls: "4-5", types: ["Fire"] }
     ]

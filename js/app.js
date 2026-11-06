@@ -28,13 +28,34 @@
     cynthia: '👑'
   };
 
-  function getRoster() {
-    if (typeof window !== 'undefined' && window.POKEMON_DATA && window.POKEMON_DATA.length > 0) return window.POKEMON_DATA;
-    if (typeof POKEMON_DATA !== 'undefined' && Array.isArray(POKEMON_DATA) && POKEMON_DATA.length > 0) return POKEMON_DATA;
-    if (typeof window !== 'undefined' && window.POKEMON_PART1) {
-      return (window.POKEMON_PART1 || []).concat(window.POKEMON_PART2 || []);
+  function ensureBst(p) {
+    if (!p) return 0;
+    if (typeof p.bst === 'number' && !isNaN(p.bst)) return p.bst;
+    if (p.stats) {
+      p.bst = (p.stats.hp || 0) + (p.stats.atk || 0) + (p.stats.def || 0) + (p.stats.spa || 0) + (p.stats.spd || 0) + (p.stats.spe || 0);
+    } else {
+      p.bst = 0;
     }
-    return [];
+    if (p.vanillaStats) {
+      const vBst = (p.vanillaStats.hp || 0) + (p.vanillaStats.atk || 0) + (p.vanillaStats.def || 0) + (p.vanillaStats.spa || 0) + (p.vanillaStats.spd || 0) + (p.vanillaStats.spe || 0);
+      p.bstDiff = p.bst - vBst;
+    } else {
+      p.bstDiff = 0;
+    }
+    return p.bst;
+  }
+
+  function getRoster() {
+    let list = [];
+    if (typeof window !== 'undefined' && window.POKEMON_DATA && window.POKEMON_DATA.length > 0) list = window.POKEMON_DATA;
+    else if (typeof POKEMON_DATA !== 'undefined' && Array.isArray(POKEMON_DATA) && POKEMON_DATA.length > 0) list = POKEMON_DATA;
+    else if (typeof window !== 'undefined' && window.POKEMON_PART1) {
+      list = (window.POKEMON_PART1 || []).concat(window.POKEMON_PART2 || []);
+    }
+    for (let i = 0; i < list.length; i++) {
+      ensureBst(list[i]);
+    }
+    return list;
   }
 
   const initialRoster = getRoster();
@@ -224,7 +245,7 @@
       switch (state.sortBy) {
         case 'name':
           return state.sortOrder === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
-        case 'bst': valA = a.bst; valB = b.bst; break;
+        case 'bst': valA = ensureBst(a); valB = ensureBst(b); break;
         case 'hp': valA = a.stats.hp; valB = b.stats.hp; break;
         case 'atk': valA = a.stats.atk; valB = b.stats.atk; break;
         case 'def': valA = a.stats.def; valB = b.stats.def; break;
@@ -262,9 +283,10 @@
     const visible = state.filteredPokemon.slice(0, state.renderLimit);
     let html = visible.map(p => {
       const isSelected = state.selectedPokemon && state.selectedPokemon.id === p.id;
+      const bstVal = ensureBst(p);
       const bstBadge = p.bstDiff && p.bstDiff !== 0
-        ? `<span>${p.bst} <small style="color:${p.bstDiff > 0 ? '#4ade80' : '#f87171'}">(${p.bstDiff > 0 ? '+' : ''}${p.bstDiff})</small></span>`
-        : `<span>${p.bst}</span>`;
+        ? `<span>${bstVal} <small style="color:${p.bstDiff > 0 ? '#4ade80' : '#f87171'}">(${p.bstDiff > 0 ? '+' : ''}${p.bstDiff})</small></span>`
+        : `<span>${bstVal}</span>`;
 
       return `
         <tr class="dex-row ${isSelected ? 'selected' : ''}" data-id="${p.id}">
@@ -350,7 +372,7 @@
             <div class="card-info">
               <div class="card-name">${p.name}</div>
               <div class="card-types">${renderTypeBadges(p.types, 'sm')}</div>
-              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">BST: <strong style="color:var(--accent-cyan);">${p.bst}</strong></div>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">BST: <strong style="color:var(--accent-cyan);">${ensureBst(p)}</strong></div>
             </div>
           </div>
           <div class="card-stats-preview">
@@ -626,13 +648,13 @@
         <div class="detail-section">
           <div class="section-title">
             <span>Base Stats</span>
-            <span style="font-family:monospace; font-size:0.75rem; color:var(--accent-cyan);">BST: ${p.bst}</span>
+            <span style="font-family:monospace; font-size:0.75rem; color:var(--accent-cyan);">BST: ${ensureBst(p)}</span>
           </div>
           <div class="stats-table">
             ${statsHtml}
             <div class="bst-row">
               <span style="color:var(--text-muted); font-family:monospace;">TOTAL</span>
-              <span style="color:var(--accent-cyan); font-family:monospace; font-size:1.05rem;">${p.bst}</span>
+              <span style="color:var(--accent-cyan); font-family:monospace; font-size:1.05rem;">${ensureBst(p)}</span>
             </div>
           </div>
         </div>
