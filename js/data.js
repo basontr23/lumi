@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Luminescent Platinum Pokédex Database
  * Accurate to https://luminescent.team/docs
  * Complete dataset: All Gen 1-4 Pokémon (1-493) + Hisuian forms,
