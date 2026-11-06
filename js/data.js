@@ -110,18 +110,22 @@ var ITEMS_DATA = [
     {
         "id":  "adamant-orb",
         "name":  "Adamant Orb",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Mt. Coronet"
+        "locations":  [
+                          "Mt. Coronet"
+                      ]
     },
     {
         "id":  "amulet-coin",
         "name":  "Amulet Coin",
-        "icon":  "🥊",
+        "icon":  "🪙",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Amity Square"
+        "locations":  [
+                          "Amity Square"
+                      ]
     },
     {
         "id":  "big-root",
@@ -129,20 +133,24 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 214"
+        "locations":  [
+                          "Route 214"
+                      ]
     },
     {
         "id":  "black-belt",
         "name":  "Black Belt",
-        "icon":  "⚔️",
+        "icon":  "🥋",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 221"
+        "locations":  [
+                          "Route 221"
+                      ]
     },
     {
         "id":  "black-glasses",
         "name":  "Black Glasses",
-        "icon":  "🥊",
+        "icon":  "👓",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -156,15 +164,19 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Great Marsh"
+        "locations":  [
+                          "Great Marsh"
+                      ]
     },
     {
         "id":  "blue-scarf",
         "name":  "Blue Scarf",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Pastoria City"
+        "locations":  [
+                          "Pastoria City"
+                      ]
     },
     {
         "id":  "bold-mint",
@@ -210,7 +222,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Mt. Coronet"
+        "locations":  [
+                          "Mt. Coronet"
+                      ]
     },
     {
         "id":  "calm-mint",
@@ -249,26 +263,32 @@ var ITEMS_DATA = [
     {
         "id":  "choice-band",
         "name":  "Choice Band",
-        "icon":  "🥊",
+        "icon":  "🥋",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 214 (from NPC)"
+        "locations":  [
+                          "Route 214 (from NPC)"
+                      ]
     },
     {
         "id":  "choice-scarf",
         "name":  "Choice Scarf",
-        "icon":  "🥊",
+        "icon":  "🧣",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Solaceon Ruins (from NPC)"
+        "locations":  [
+                          "Solaceon Ruins (from NPC)"
+                      ]
     },
     {
         "id":  "choice-specs",
         "name":  "Choice Specs",
-        "icon":  "🥊",
+        "icon":  "👓",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Celestic Town (from NPC at Morning)"
+        "locations":  [
+                          "Celestic Town (from NPC at Morning)"
+                      ]
     },
     {
         "id":  "cleanse-tag",
@@ -276,20 +296,24 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Lost Tower"
+        "locations":  [
+                          "Lost Tower"
+                      ]
     },
     {
         "id":  "damp-rock",
         "name":  "Damp Rock",
-        "icon":  "🥊",
+        "icon":  "🪨",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 220"
+        "locations":  [
+                          "Route 220"
+                      ]
     },
     {
         "id":  "dawn-stone",
         "name":  "Dawn Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -303,7 +327,7 @@ var ITEMS_DATA = [
     {
         "id":  "deep-sea-scale",
         "name":  "Deep Sea Scale",
-        "icon":  "✨",
+        "icon":  "🐟",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -314,7 +338,7 @@ var ITEMS_DATA = [
     {
         "id":  "deep-sea-tooth",
         "name":  "Deep Sea Tooth",
-        "icon":  "✨",
+        "icon":  "🧬",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -336,15 +360,17 @@ var ITEMS_DATA = [
     {
         "id":  "dragon-fang",
         "name":  "Dragon Fang",
-        "icon":  "✨",
+        "icon":  "🐾",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
-        "locations":  "Celestic Town"
+        "locations":  [
+                          "Celestic Town"
+                      ]
     },
     {
         "id":  "dragon-scale",
         "name":  "Dragon Scale",
-        "icon":  "✨",
+        "icon":  "🐟",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -356,7 +382,7 @@ var ITEMS_DATA = [
     {
         "id":  "dubious-disc",
         "name":  "Dubious Disc",
-        "icon":  "✨",
+        "icon":  "💾",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -367,7 +393,7 @@ var ITEMS_DATA = [
     {
         "id":  "dusk-stone",
         "name":  "Dusk Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -381,7 +407,7 @@ var ITEMS_DATA = [
     {
         "id":  "electirizer",
         "name":  "Electirizer",
-        "icon":  "✨",
+        "icon":  "🧬",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -392,10 +418,12 @@ var ITEMS_DATA = [
     {
         "id":  "everstone",
         "name":  "Everstone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
-        "locations":  "Veilstone Dept. Store (Buyable)"
+        "locations":  [
+                          "Veilstone Dept. Store (Buyable)"
+                      ]
     },
     {
         "id":  "exp-share",
@@ -403,7 +431,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 203"
+        "locations":  [
+                          "Route 203"
+                      ]
     },
     {
         "id":  "expert-belt",
@@ -419,7 +449,7 @@ var ITEMS_DATA = [
     {
         "id":  "fire-stone",
         "name":  "Fire Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -434,23 +464,27 @@ var ITEMS_DATA = [
     {
         "id":  "flame-orb",
         "name":  "Flame Orb",
-        "icon":  "🥊",
+        "icon":  "🔮",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Veilstone Shady Vendor (Buyable)"
+        "locations":  [
+                          "Veilstone Shady Vendor (Buyable)"
+                      ]
     },
     {
         "id":  "focus-band",
         "name":  "Focus Band",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Wayward Cave"
+        "locations":  [
+                          "Wayward Cave"
+                      ]
     },
     {
         "id":  "focus-sash",
         "name":  "Focus Sash",
-        "icon":  "🥊",
+        "icon":  "🥋",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -464,7 +498,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Veilstone City"
+        "locations":  [
+                          "Veilstone City"
+                      ]
     },
     {
         "id":  "golden-bottle-cap",
@@ -483,34 +519,42 @@ var ITEMS_DATA = [
     {
         "id":  "green-scarf",
         "name":  "Green Scarf",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Pastoria City"
+        "locations":  [
+                          "Pastoria City"
+                      ]
     },
     {
         "id":  "grip-claw",
         "name":  "Grip Claw",
-        "icon":  "✨",
+        "icon":  "🐾",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
-        "locations":  "Wayward Cave"
+        "locations":  [
+                          "Wayward Cave"
+                      ]
     },
     {
         "id":  "griseous-orb",
         "name":  "Griseous Orb",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Turnback Cave"
+        "locations":  [
+                          "Turnback Cave"
+                      ]
     },
     {
         "id":  "hard-stone",
         "name":  "Hard Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
-        "locations":  "Route 207"
+        "locations":  [
+                          "Route 207"
+                      ]
     },
     {
         "id":  "hasty-mint",
@@ -526,7 +570,7 @@ var ITEMS_DATA = [
     {
         "id":  "heart-scale",
         "name":  "Heart Scale",
-        "icon":  "✨",
+        "icon":  "🐟",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -540,15 +584,17 @@ var ITEMS_DATA = [
     {
         "id":  "heat-rock",
         "name":  "Heat Rock",
-        "icon":  "🥊",
+        "icon":  "🪨",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 214"
+        "locations":  [
+                          "Route 214"
+                      ]
     },
     {
         "id":  "ice-stone",
         "name":  "Ice Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -562,10 +608,12 @@ var ITEMS_DATA = [
     {
         "id":  "icy-rock",
         "name":  "Icy Rock",
-        "icon":  "🥊",
+        "icon":  "🪨",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 217"
+        "locations":  [
+                          "Route 217"
+                      ]
     },
     {
         "id":  "impish-mint",
@@ -584,7 +632,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Iron Island"
+        "locations":  [
+                          "Iron Island"
+                      ]
     },
     {
         "id":  "jolly-mint",
@@ -601,7 +651,7 @@ var ITEMS_DATA = [
     {
         "id":  "king-s-rock",
         "name":  "King\u0027s Rock",
-        "icon":  "✨",
+        "icon":  "🧬",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -616,7 +666,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 226"
+        "locations":  [
+                          "Route 226"
+                      ]
     },
     {
         "id":  "lax-incense",
@@ -624,7 +676,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 225"
+        "locations":  [
+                          "Route 225"
+                      ]
     },
     {
         "id":  "lax-mint",
@@ -640,7 +694,7 @@ var ITEMS_DATA = [
     {
         "id":  "leaf-stone",
         "name":  "Leaf Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -655,7 +709,7 @@ var ITEMS_DATA = [
     {
         "id":  "leftovers",
         "name":  "Leftovers",
-        "icon":  "🥊",
+        "icon":  "🍎",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -666,7 +720,7 @@ var ITEMS_DATA = [
     {
         "id":  "life-orb",
         "name":  "Life Orb",
-        "icon":  "🥊",
+        "icon":  "🔮",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -681,12 +735,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Floaroma Town"
+        "locations":  [
+                          "Floaroma Town"
+                      ]
     },
     {
         "id":  "light-clay",
         "name":  "Light Clay",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -711,7 +767,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Ravaged Path"
+        "locations":  [
+                          "Ravaged Path"
+                      ]
     },
     {
         "id":  "lucky-egg",
@@ -719,7 +777,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Pokémon Mansion"
+        "locations":  [
+                          "Pokémon Mansion"
+                      ]
     },
     {
         "id":  "lucky-punch",
@@ -727,15 +787,19 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Floaroma Town"
+        "locations":  [
+                          "Floaroma Town"
+                      ]
     },
     {
         "id":  "lustrous-orb",
         "name":  "Lustrous Orb",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Mt. Coronet"
+        "locations":  [
+                          "Mt. Coronet"
+                      ]
     },
     {
         "id":  "macho-brace",
@@ -743,12 +807,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Pastoria City"
+        "locations":  [
+                          "Pastoria City"
+                      ]
     },
     {
         "id":  "magmarizer",
         "name":  "Magmarizer",
-        "icon":  "✨",
+        "icon":  "🧬",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -762,7 +828,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Valley Windworks"
+        "locations":  [
+                          "Valley Windworks"
+                      ]
     },
     {
         "id":  "max-revive",
@@ -779,7 +847,7 @@ var ITEMS_DATA = [
     {
         "id":  "mental-herb",
         "name":  "Mental Herb",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -790,7 +858,7 @@ var ITEMS_DATA = [
     {
         "id":  "metal-coat",
         "name":  "Metal Coat",
-        "icon":  "✨",
+        "icon":  "🛡️",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -806,7 +874,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Floaroma Town"
+        "locations":  [
+                          "Floaroma Town"
+                      ]
     },
     {
         "id":  "metronome",
@@ -859,7 +929,7 @@ var ITEMS_DATA = [
     {
         "id":  "moon-stone",
         "name":  "Moon Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -873,10 +943,12 @@ var ITEMS_DATA = [
     {
         "id":  "muscle-band",
         "name":  "Muscle Band",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Oreburgh Mine"
+        "locations":  [
+                          "Oreburgh Mine"
+                      ]
     },
     {
         "id":  "mystic-water",
@@ -931,12 +1003,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Solaceon Ruins"
+        "locations":  [
+                          "Solaceon Ruins"
+                      ]
     },
     {
         "id":  "oval-stone",
         "name":  "Oval Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -948,10 +1022,12 @@ var ITEMS_DATA = [
     {
         "id":  "pink-scarf",
         "name":  "Pink Scarf",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Pastoria City"
+        "locations":  [
+                          "Pastoria City"
+                      ]
     },
     {
         "id":  "poison-barb",
@@ -970,15 +1046,19 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Solaceon Town"
+        "locations":  [
+                          "Solaceon Town"
+                      ]
     },
     {
         "id":  "power-band",
         "name":  "Power Band",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Solaceon Town"
+        "locations":  [
+                          "Solaceon Town"
+                      ]
     },
     {
         "id":  "power-belt",
@@ -986,7 +1066,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Solaceon Town"
+        "locations":  [
+                          "Solaceon Town"
+                      ]
     },
     {
         "id":  "power-bracer",
@@ -994,23 +1076,29 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Solaceon Town"
+        "locations":  [
+                          "Solaceon Town"
+                      ]
     },
     {
         "id":  "power-herb",
         "name":  "Power Herb",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Veilstone Shady Vendor (Buyable)"
+        "locations":  [
+                          "Veilstone Shady Vendor (Buyable)"
+                      ]
     },
     {
         "id":  "power-lens",
         "name":  "Power Lens",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Solaceon Town"
+        "locations":  [
+                          "Solaceon Town"
+                      ]
     },
     {
         "id":  "power-weight",
@@ -1018,7 +1106,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Solaceon Town"
+        "locations":  [
+                          "Solaceon Town"
+                      ]
     },
     {
         "id":  "pp-max",
@@ -1026,7 +1116,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Poké Mart (7 badges)"
+        "locations":  [
+                          "Poké Mart (7 badges)"
+                      ]
     },
     {
         "id":  "pp-up",
@@ -1034,12 +1126,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Poké Mart (7 badges)"
+        "locations":  [
+                          "Poké Mart (7 badges)"
+                      ]
     },
     {
         "id":  "prism-scale",
         "name":  "Prism Scale",
-        "icon":  "✨",
+        "icon":  "🐟",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1050,7 +1144,7 @@ var ITEMS_DATA = [
     {
         "id":  "protector",
         "name":  "Protector",
-        "icon":  "✨",
+        "icon":  "🧬",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1065,15 +1159,19 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 221"
+        "locations":  [
+                          "Route 221"
+                      ]
     },
     {
         "id":  "quick-claw",
         "name":  "Quick Claw",
-        "icon":  "✨",
+        "icon":  "🐾",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
-        "locations":  "Jubilife City"
+        "locations":  [
+                          "Jubilife City"
+                      ]
     },
     {
         "id":  "quick-powder",
@@ -1081,7 +1179,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Floaroma Town"
+        "locations":  [
+                          "Floaroma Town"
+                      ]
     },
     {
         "id":  "quiet-mint",
@@ -1108,7 +1208,7 @@ var ITEMS_DATA = [
     {
         "id":  "razor-claw",
         "name":  "Razor Claw",
-        "icon":  "✨",
+        "icon":  "🐾",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1122,7 +1222,7 @@ var ITEMS_DATA = [
     {
         "id":  "razor-fang",
         "name":  "Razor Fang",
-        "icon":  "✨",
+        "icon":  "🐾",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1134,7 +1234,7 @@ var ITEMS_DATA = [
     {
         "id":  "reaper-cloth",
         "name":  "Reaper Cloth",
-        "icon":  "✨",
+        "icon":  "👻",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1147,10 +1247,12 @@ var ITEMS_DATA = [
     {
         "id":  "red-scarf",
         "name":  "Red Scarf",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Pastoria City"
+        "locations":  [
+                          "Pastoria City"
+                      ]
     },
     {
         "id":  "relaxed-mint",
@@ -1166,10 +1268,12 @@ var ITEMS_DATA = [
     {
         "id":  "rock-incense",
         "name":  "Rock Incense",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Fuego Ironworks"
+        "locations":  [
+                          "Fuego Ironworks"
+                      ]
     },
     {
         "id":  "rose-incense",
@@ -1177,7 +1281,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 212"
+        "locations":  [
+                          "Route 212"
+                      ]
     },
     {
         "id":  "sassy-mint",
@@ -1193,7 +1299,7 @@ var ITEMS_DATA = [
     {
         "id":  "scope-lens",
         "name":  "Scope Lens",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -1207,7 +1313,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 204"
+        "locations":  [
+                          "Route 204"
+                      ]
     },
     {
         "id":  "serious-mint",
@@ -1248,12 +1356,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Hearthome City"
+        "locations":  [
+                          "Hearthome City"
+                      ]
     },
     {
         "id":  "shiny-stone",
         "name":  "Shiny Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1267,10 +1377,12 @@ var ITEMS_DATA = [
     {
         "id":  "silk-scarf",
         "name":  "Silk Scarf",
-        "icon":  "🥊",
+        "icon":  "🧣",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 203"
+        "locations":  [
+                          "Route 203"
+                      ]
     },
     {
         "id":  "silver-powder",
@@ -1278,7 +1390,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Eterna Forest"
+        "locations":  [
+                          "Eterna Forest"
+                      ]
     },
     {
         "id":  "smoke-ball",
@@ -1286,15 +1400,19 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 210"
+        "locations":  [
+                          "Route 210"
+                      ]
     },
     {
         "id":  "smooth-rock",
         "name":  "Smooth Rock",
-        "icon":  "🥊",
+        "icon":  "🪨",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Iron Island"
+        "locations":  [
+                          "Iron Island"
+                      ]
     },
     {
         "id":  "soft-sand",
@@ -1302,7 +1420,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Mt. Coronet"
+        "locations":  [
+                          "Mt. Coronet"
+                      ]
     },
     {
         "id":  "soothe-bell",
@@ -1321,7 +1441,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Oreburgh City"
+        "locations":  [
+                          "Oreburgh City"
+                      ]
     },
     {
         "id":  "spell-tag",
@@ -1340,7 +1462,9 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Floaroma Town"
+        "locations":  [
+                          "Floaroma Town"
+                      ]
     },
     {
         "id":  "sticky-barb",
@@ -1348,12 +1472,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Veilstone Dept. Store"
+        "locations":  [
+                          "Veilstone Dept. Store"
+                      ]
     },
     {
         "id":  "sun-stone",
         "name":  "Sun Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1370,12 +1496,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Floaroma Town"
+        "locations":  [
+                          "Floaroma Town"
+                      ]
     },
     {
         "id":  "thunder-stone",
         "name":  "Thunder Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1402,7 +1530,7 @@ var ITEMS_DATA = [
     {
         "id":  "toxic-orb",
         "name":  "Toxic Orb",
-        "icon":  "🥊",
+        "icon":  "🔮",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -1416,12 +1544,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 209"
+        "locations":  [
+                          "Route 209"
+                      ]
     },
     {
         "id":  "up-grade",
         "name":  "Up-Grade",
-        "icon":  "✨",
+        "icon":  "💾",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1432,7 +1562,7 @@ var ITEMS_DATA = [
     {
         "id":  "water-stone",
         "name":  "Water Stone",
-        "icon":  "✨",
+        "icon":  "💎",
         "desc":  "Triggers evolution for specific Pokémon species.",
         "category":  "Evolution",
         "locations":  [
@@ -1450,12 +1580,14 @@ var ITEMS_DATA = [
         "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Route 210 (North)"
+        "locations":  [
+                          "Route 210 (North)"
+                      ]
     },
     {
         "id":  "white-herb",
         "name":  "White Herb",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -1466,15 +1598,17 @@ var ITEMS_DATA = [
     {
         "id":  "wide-lens",
         "name":  "Wide Lens",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Veilstone Shady Vendor (Buyable)"
+        "locations":  [
+                          "Veilstone Shady Vendor (Buyable)"
+                      ]
     },
     {
         "id":  "wise-glasses",
         "name":  "Wise Glasses",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
         "locations":  [
@@ -1486,391 +1620,487 @@ var ITEMS_DATA = [
     {
         "id":  "yellow-scarf",
         "name":  "Yellow Scarf",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Pastoria City"
+        "locations":  [
+                          "Pastoria City"
+                      ]
     },
     {
         "id":  "zoom-lens",
         "name":  "Zoom Lens",
-        "icon":  "🥊",
+        "icon":  "⚔️",
         "desc":  "Held battle and training item in Luminescent Platinum.",
         "category":  "Battle Item",
-        "locations":  "Veilstone Shady Vendor (Buyable)"
+        "locations":  [
+                          "Veilstone Shady Vendor (Buyable)"
+                      ]
     },
     {
         "id":  "incense-burner",
         "name":  "Incense Burner",
-        "icon":  "🔑",
+        "icon":  "🏺",
         "desc":  "A small incense burner shaped like a Pokémon from Sinnoh\u0027s myths. When filled with flowers, strange Pokémon stir.",
         "category":  "Key Item",
-        "locations":  "Lake Verity"
+        "locations":  [
+                          "Lake Verity"
+                      ]
     },
     {
         "id":  "guidebook",
         "name":  "Guidebook",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A book full of useful information for your adventure.",
         "category":  "Key Item",
-        "locations":  "Twinleaf Town"
+        "locations":  [
+                          "Twinleaf Town"
+                      ]
     },
     {
         "id":  "infinite-repel",
         "name":  "Infinite Repel",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A repel that never runs out, keep Pokémon away forever. This item does not work with the repel trick.",
         "category":  "Key Item",
-        "locations":  "Visit a Pokémon Center"
+        "locations":  [
+                          "Visit a Pokémon Center"
+                      ]
     },
     {
         "id":  "parcel",
         "name":  "Parcel",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A parcel entrusted into your care. You’re supposed to deliver it to your childhood friend who left Twinleaf Town.",
         "category":  "Key Item",
-        "locations":  "Twinleaf Town"
+        "locations":  [
+                          "Twinleaf Town"
+                      ]
     },
     {
         "id":  "bike",
         "name":  "Bike",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A folding bike that enables a rider to get around much faster than with Running Shoes.",
         "category":  "Key Item",
-        "locations":  "Twinleaf Town"
+        "locations":  [
+                          "Twinleaf Town"
+                      ]
     },
     {
         "id":  "pok-radar",
         "name":  "Poké Radar",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A tool that can search out Pokémon that are hiding in the tall grass.",
         "category":  "Key Item",
-        "locations":  "Sandgem Town"
+        "locations":  [
+                          "Sandgem Town"
+                      ]
     },
     {
         "id":  "ds-sounds",
         "name":  "DS Sounds",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A music player that allows you to listen to nostalgic songs. It’s operated with the flip of a single switch.",
         "category":  "Key Item",
-        "locations":  "Jubilife City"
+        "locations":  [
+                          "Jubilife City"
+                      ]
     },
     {
         "id":  "old-rod",
         "name":  "Old Rod",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "An old and beat-up fishing rod. Use it at any body of water to fish for wild aquatic Pokémon.",
         "category":  "Key Item",
-        "locations":  "Jubilife City - Route 218 Gate"
+        "locations":  [
+                          "Jubilife City - Route 218 Gate"
+                      ]
     },
     {
         "id":  "sprayduck",
         "name":  "Sprayduck",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A watering can shaped like a Psyduck. It helps promote the healthy growth of any Berries planted in good, soft soil.",
         "category":  "Key Item",
-        "locations":  "Floaroma Town"
+        "locations":  [
+                          "Floaroma Town"
+                      ]
     },
     {
         "id":  "works-key",
         "name":  "Works Key",
-        "icon":  "🔑",
+        "icon":  "🗝️",
         "desc":  "A large key for operating the doors of the Valley Windworks in the canyon. It was held by a Team Galactic Grunt.",
         "category":  "Key Item",
-        "locations":  "Floaroma Meadow"
+        "locations":  [
+                          "Floaroma Meadow"
+                      ]
     },
     {
         "id":  "secret-key",
         "name":  "Secret Key",
-        "icon":  "🔑",
+        "icon":  "🗝️",
         "desc":  "A high-tech key that has to be used at a specific location. It emits a special electronic signal to open a door.",
         "category":  "Key Item",
-        "locations":  "Old Chateau"
+        "locations":  [
+                          "Old Chateau"
+                      ]
     },
     {
         "id":  "explorer-kit",
         "name":  "Explorer Kit",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A bag filled with convenient tools for exploring. It provides access to the Grand Underground.",
         "category":  "Key Item",
-        "locations":  "Eterna City"
+        "locations":  [
+                          "Eterna City"
+                      ]
     },
     {
         "id":  "rotom-catalog",
         "name":  "Rotom Catalog",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A catalog of devices that Rotom like. Use the catalog to have Rotom hop in and out of the various devices listed within.",
         "category":  "Key Item",
-        "locations":  "Eterna City Galactic Building"
+        "locations":  [
+                          "Eterna City Galactic Building"
+                      ]
     },
     {
         "id":  "vs-seeker",
         "name":  "Vs. Seeker",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A device that indicates Trainers who want to battle. Its battery charges while you walk.",
         "category":  "Key Item",
-        "locations":  "Route 207"
+        "locations":  [
+                          "Route 207"
+                      ]
     },
     {
         "id":  "poffin-case",
         "name":  "Poffin Case",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A case for storing Poffins cooked from Berries.",
         "category":  "Key Item",
-        "locations":  "Hearthome City"
+        "locations":  [
+                          "Hearthome City"
+                      ]
     },
     {
         "id":  "good-rod",
         "name":  "Good Rod",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A new, good-quality fishing rod. Use it at any body of water to fish for wild aquatic Pokémon.",
         "category":  "Key Item",
-        "locations":  "Route 209"
+        "locations":  [
+                          "Route 209"
+                      ]
     },
     {
         "id":  "point-card",
         "name":  "Point Card",
-        "icon":  "🔑",
+        "icon":  "🗝️",
         "desc":  "A card that lists how many Battle Points you have earned.",
         "category":  "Key Item",
-        "locations":  "Battle Park"
+        "locations":  [
+                          "Battle Park"
+                      ]
     },
     {
         "id":  "suite-key",
         "name":  "Suite Key",
-        "icon":  "🔑",
+        "icon":  "🗝️",
         "desc":  "A key to one of the suites at a certain luxury hotel by a lake. For some odd reason, it often disappears.",
         "category":  "Key Item",
-        "locations":  "Valor Lakefront (Hidden)"
+        "locations":  [
+                          "Valor Lakefront (Hidden)"
+                      ]
     },
     {
         "id":  "secret-medicine",
         "name":  "Secret Medicine",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A fantastic medicine dispensed by the pharmacy in Cianwood City. It fully heals a Pokémon of any ailment.",
         "category":  "Key Item",
-        "locations":  "Route 214"
+        "locations":  [
+                          "Route 214"
+                      ]
     },
     {
         "id":  "old-charm",
         "name":  "Old Charm",
-        "icon":  "🔑",
+        "icon":  "✨",
         "desc":  "An ancient good-luck charm made of Pokémon bones to be taken to the elder of Celestic Town.",
         "category":  "Key Item",
-        "locations":  "Route 210"
+        "locations":  [
+                          "Route 210"
+                      ]
     },
     {
         "id":  "gs-ball",
         "name":  "GS Ball",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A mysterious Ball. This item makes you think of the forest.",
         "category":  "Key Item",
-        "locations":  "Celestic Town"
+        "locations":  [
+                          "Celestic Town"
+                      ]
     },
     {
         "id":  "tea",
         "name":  "Tea",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "Aromatic tea that has a slightly bitter taste. It soothes a dry throat.",
         "category":  "Key Item",
-        "locations":  "Renegade Park"
+        "locations":  [
+                          "Renegade Park"
+                      ]
     },
     {
         "id":  "super-rod",
         "name":  "Super Rod",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "An awesome, high-tech fishing rod. Use it at any body of water to fish for wild aquatic Pokémon.",
         "category":  "Key Item",
-        "locations":  "Snowpoint City"
+        "locations":  [
+                          "Snowpoint City"
+                      ]
     },
     {
         "id":  "galactic-key",
         "name":  "Galactic Key",
-        "icon":  "🔑",
+        "icon":  "🗝️",
         "desc":  "A card key for disengaging the security systems in the Galactic HQ. Losing it can result in punishment, apparently.",
         "category":  "Key Item",
-        "locations":  "Galactic Warehouse"
+        "locations":  [
+                          "Galactic Warehouse"
+                      ]
     },
     {
         "id":  "gracidea",
         "name":  "Gracidea",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A flower sometimes bundled in bouquets to convey gratitude on special occasions, such as birthdays.",
         "category":  "Key Item",
-        "locations":  "Pokémon League"
+        "locations":  [
+                          "Pokémon League"
+                      ]
     },
     {
         "id":  "oak-s-letter",
         "name":  "Oak\u0027s Letter",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A letter from Professor Oak. Written in it is a request for you to go to Route 224.",
         "category":  "Key Item",
-        "locations":  "Twinleaf Town"
+        "locations":  [
+                          "Twinleaf Town"
+                      ]
     },
     {
         "id":  "oval-charm",
         "name":  "Oval Charm",
-        "icon":  "🔑",
+        "icon":  "✨",
         "desc":  "An oval charm said to increase the chance of Pokémon Eggs being found at the Nursery.",
         "category":  "Key Item",
-        "locations":  "Hotel Grand Lake"
+        "locations":  [
+                          "Hotel Grand Lake"
+                      ]
     },
     {
         "id":  "shiny-charm",
         "name":  "Shiny Charm",
-        "icon":  "🔑",
+        "icon":  "✨",
         "desc":  "A shiny charm said to increase the chance of finding a Shiny Pokémon in the wild.",
         "category":  "Key Item",
-        "locations":  "Hotel Grand Lake"
+        "locations":  [
+                          "Hotel Grand Lake"
+                      ]
     },
     {
         "id":  "catching-charm",
         "name":  "Catching Charm",
-        "icon":  "🔑",
+        "icon":  "✨",
         "desc":  "Holding it is said to increase the chance of getting a critical catch. Curiously, the charm doesn’t shake much.",
         "category":  "Key Item",
-        "locations":  "Hotel Grand Lake"
+        "locations":  [
+                          "Hotel Grand Lake"
+                      ]
     },
     {
         "id":  "lunar-feather",
         "name":  "Lunar Feather",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A feather that glows like the moon. It’s said to possess the power to dispel nightmares.",
         "category":  "Key Item",
-        "locations":  "Fullmoon Island"
+        "locations":  [
+                          "Fullmoon Island"
+                      ]
     },
     {
         "id":  "member-card",
         "name":  "Member Card",
-        "icon":  "🔑",
+        "icon":  "🗝️",
         "desc":  "A card needed for entering the inn in Canalave City. Oddly, the last date marked on it was 50 years ago.",
         "category":  "Key Item",
-        "locations":  "Route 217"
+        "locations":  [
+                          "Route 217"
+                      ]
     },
     {
         "id":  "wind-badge",
         "name":  "Wind Badge",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "The Wing badge, acquired from Heather. This item does absolutely nothing.",
         "category":  "Key Item",
-        "locations":  "Route 225"
+        "locations":  [
+                          "Route 225"
+                      ]
     },
     {
         "id":  "fang-badge",
         "name":  "Fang Badge",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "The Fang badge, acquired from Wyver. This badge is totally useless really.",
         "category":  "Key Item",
-        "locations":  "Route 226"
+        "locations":  [
+                          "Route 226"
+                      ]
     },
     {
         "id":  "acid-badge",
         "name":  "Acid Badge",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "The Acid badge, acquired from Slythe. This badge is just a pretty token.",
         "category":  "Key Item",
-        "locations":  "Route 227"
+        "locations":  [
+                          "Route 227"
+                      ]
     },
     {
         "id":  "shadow-badge",
         "name":  "Shadow Badge",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "The Shadow badge, acquired from Shade. A reminder of the impending darkness, apparently.",
         "category":  "Key Item",
-        "locations":  "Route 228"
+        "locations":  [
+                          "Route 228"
+                      ]
     },
     {
         "id":  "general-badge",
         "name":  "General Badge",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "The General badge, acquired from Gene. A token of victory over plain, but dangerous foes.",
         "category":  "Key Item",
-        "locations":  "Route 229"
+        "locations":  [
+                          "Route 229"
+                      ]
     },
     {
         "id":  "moon-badge",
         "name":  "Moon Badge",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "The Moon badge, acquired from Luna. A memento, as beautiful as the moon itself.",
         "category":  "Key Item",
-        "locations":  "Route 230"
+        "locations":  [
+                          "Route 230"
+                      ]
     },
     {
         "id":  "odd-invitation",
         "name":  "Odd Invitation",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A mysterious invitation given to you by a nurse. It says to meet somebody at the Gate.",
         "category":  "Key Item",
-        "locations":  "Resort Area"
+        "locations":  [
+                          "Resort Area"
+                      ]
     },
     {
         "id":  "silver-wing",
         "name":  "Silver Wing",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A strange, silvery feather that sparkles.",
         "category":  "Key Item",
-        "locations":  "Eterna City"
+        "locations":  [
+                          "Eterna City"
+                      ]
     },
     {
         "id":  "rainbow-wing",
         "name":  "Rainbow Wing",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A mystical rainbow feather that sparkles.",
         "category":  "Key Item",
-        "locations":  "Eterna City"
+        "locations":  [
+                          "Eterna City"
+                      ]
     },
     {
         "id":  "azure-flute",
         "name":  "Azure Flute",
-        "icon":  "🔑",
+        "icon":  "🎺",
         "desc":  "A flute that puts out echoing sounds that do not seem to be of this world. No one knows who made it.",
         "category":  "Key Item",
-        "locations":  "Hearthome City"
+        "locations":  [
+                          "Hearthome City"
+                      ]
     },
     {
         "id":  "magma-stone",
         "name":  "Magma Stone",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A stone formed by boulders melting in intensely hot magma, then hardening. Magma remains sealed inside it.",
         "category":  "Key Item",
-        "locations":  "Stark Mountain"
+        "locations":  [
+                          "Stark Mountain"
+                      ]
     },
     {
         "id":  "blue-orb",
         "name":  "Blue Orb",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A shiny blue orb that is said to have a legend tied to it. It’s known to have a deep connection with the Hoenn region.",
         "category":  "Key Item",
-        "locations":  "Oreburgh City"
+        "locations":  [
+                          "Oreburgh City"
+                      ]
     },
     {
         "id":  "red-orb",
         "name":  "Red Orb",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A shiny red orb that is said to have a legend tied to it. It’s known to have a deep connection with the Hoenn region.",
         "category":  "Key Item",
-        "locations":  "Oreburgh City"
+        "locations":  [
+                          "Oreburgh City"
+                      ]
     },
     {
         "id":  "jade-orb",
         "name":  "Jade Orb",
-        "icon":  "🔑",
+        "icon":  "⭐",
         "desc":  "A shiny green orb that is said to have a legend tied to it. It’s known to have a deep connection with the Hoenn region.",
         "category":  "Key Item",
-        "locations":  "Oreburgh City"
+        "locations":  [
+                          "Oreburgh City"
+                      ]
     },
     {
         "id":  "everlasting-candy",
         "name":  "Everlasting Candy",
-        "icon":  "🔑",
+        "icon":  "🍬",
         "desc":  "Reusable Rare Candy key item that instantly levels up Pokémon to test builds or reach the level cap effortlessly.",
         "category":  "Key Item",
-        "locations":  "Sandgem Town"
+        "locations":  [
+                          "Sandgem Town"
+                      ]
     },
     {
         "id":  "link-cable",
         "name":  "Link Cable",
-        "icon":  "✨",
+        "icon":  "🔌",
         "desc":  "Evolution cable triggering trade evolutions without trading.",
         "category":  "Evolution",
         "locations":  [
@@ -1882,7 +2112,7 @@ var ITEMS_DATA = [
     {
         "id":  "peat-block",
         "name":  "Peat Block",
-        "icon":  "✨",
+        "icon":  "🧱",
         "desc":  "Evolves Ursaring into Ursaluna during the Full Moon in Solaceon Town.",
         "category":  "Evolution",
         "locations":  [
@@ -1893,7 +2123,7 @@ var ITEMS_DATA = [
     {
         "id":  "black-augurite",
         "name":  "Black Augurite",
-        "icon":  "✨",
+        "icon":  "🪓",
         "desc":  "Volcanic stone that evolves Scyther into Kleavor.",
         "category":  "Evolution",
         "locations":  [

@@ -174,6 +174,11 @@
   // Section Switcher
   function switchSection(sectionId) {
     state.currentSection = sectionId;
+    try {
+      if (history.replaceState) {
+        history.replaceState(null, '', '#' + sectionId);
+      }
+    } catch (e) {}
 
     // Close detail drawer when switching away from Dex or on mobile
     if (detailDrawer && (sectionId !== 'pokedex' || window.innerWidth <= 900)) {
@@ -793,13 +798,21 @@
     const grid = document.getElementById('items-cards-grid');
     if (!grid) return;
 
-    let items = [...ITEMS_DATA];
+    const sourceItems = (window.ITEMS_DATA && Array.isArray(window.ITEMS_DATA)) ? window.ITEMS_DATA : (typeof ITEMS_DATA !== 'undefined' ? ITEMS_DATA : []);
+    let items = [...sourceItems];
+
     if (state.itemCategory !== 'all') {
       items = items.filter(it => it.category === state.itemCategory);
     }
-    if (state.itemSearch.trim()) {
+    if (state.itemSearch && state.itemSearch.trim()) {
       const q = state.itemSearch.toLowerCase().trim();
-      items = items.filter(it => it.name.toLowerCase().includes(q) || it.desc.toLowerCase().includes(q) || (it.locations && it.locations.some(l => l.toLowerCase().includes(q))));
+      items = items.filter(it => {
+        const nameMatch = it.name && it.name.toLowerCase().includes(q);
+        const descMatch = it.desc && it.desc.toLowerCase().includes(q);
+        const locs = Array.isArray(it.locations) ? it.locations : (it.locations ? [it.locations] : []);
+        const locMatch = locs.some(l => String(l).toLowerCase().includes(q));
+        return nameMatch || descMatch || locMatch;
+      });
     }
 
     if (items.length === 0) {
@@ -807,21 +820,24 @@
       return;
     }
 
-    grid.innerHTML = items.map(it => `
+    grid.innerHTML = items.map(it => {
+      const locs = Array.isArray(it.locations) ? it.locations : (it.locations ? [it.locations] : ['Sinnoh region']);
+      return `
       <div class="item-card">
         <div class="item-card-top">
-          <span class="item-icon">${it.icon}</span>
+          <span class="item-icon">${it.icon || '📦'}</span>
           <div style="display:flex; flex-direction:column; gap:2px;">
             <span class="item-name">${it.name}</span>
             <span class="badge-tag lumi" style="width:fit-content;">${it.category}</span>
           </div>
         </div>
-        <p class="item-desc">${it.desc}</p>
+        <p class="item-desc">${it.desc || 'Item in Luminescent Platinum.'}</p>
         <div class="item-locations-box">
           <span class="item-loc-label">📍 Where to Find in Sinnoh:</span>
-          ${it.locations.map(loc => `<span>• ${loc}</span>`).join('')}
+          ${locs.map(loc => `<span>• ${loc}</span>`).join('')}
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
 
   // ==========================================
@@ -1298,6 +1314,11 @@
     // Select first Pokémon; only auto-open drawer if on desktop (> 900px)
     if (state.pokemon && state.pokemon.length > 0) {
       selectPokemon(state.pokemon[0].id, window.innerWidth > 900);
+    }
+    // Check initial URL hash
+    const initialHash = (window.location.hash || '').replace('#', '').toLowerCase();
+    if (['items', 'routes', 'bosses', 'levelcaps'].includes(initialHash)) {
+      switchSection(initialHash);
     }
   }
 
