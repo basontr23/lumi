@@ -16,7 +16,10 @@ var RAW_EVO_CHAINS = [
   { species: "Rattata", evolvesTo: [{ species: "Raticate", trigger: "Lv 20" }] },
   { species: "Spearow", evolvesTo: [{ species: "Fearow", trigger: "Lv 20" }] },
   { species: "Ekans", evolvesTo: [{ species: "Arbok", trigger: "Lv 22" }] },
-  { species: "Pichu", evolvesTo: [{ species: "Pikachu", trigger: "High Friendship", evolvesTo: [{ species: "Raichu", trigger: "Thunder Stone" }] }] },
+  { species: "Pichu", evolvesTo: [{ species: "Pikachu", trigger: "High Friendship", evolvesTo: [
+    { species: "Raichu", trigger: "Thunder Stone" },
+    { species: "Raichu (Alola)", trigger: "Sun Stone / Incense" }
+  ] }] },
   { species: "Sandshrew", evolvesTo: [{ species: "Sandslash", trigger: "Lv 22" }] },
   { species: "Nidoran♀", evolvesTo: [{ species: "Nidorina", trigger: "Lv 16", evolvesTo: [{ species: "Nidoqueen", trigger: "Moon Stone" }] }] },
   { species: "Nidoran♂", evolvesTo: [{ species: "Nidorino", trigger: "Lv 16", evolvesTo: [{ species: "Nidoking", trigger: "Moon Stone" }] }] },
@@ -66,15 +69,24 @@ var RAW_EVO_CHAINS = [
     { species: "Electrode", trigger: "Lv 30" },
     { species: "Electrode (Hisui)", trigger: "Leaf Stone + Incense Burner" }
   ] },
-  { species: "Exeggcute", evolvesTo: [{ species: "Exeggutor", trigger: "Leaf Stone" }] },
-  { species: "Cubone", evolvesTo: [{ species: "Marowak", trigger: "Lv 28" }] },
+  { species: "Exeggcute", evolvesTo: [
+    { species: "Exeggutor", trigger: "Leaf Stone" },
+    { species: "Exeggutor (Alola)", trigger: "Leaf Stone + Incense" }
+  ] },
+  { species: "Cubone", evolvesTo: [
+    { species: "Marowak", trigger: "Lv 28" },
+    { species: "Marowak (Alola)", trigger: "Lv 28 (Night) + Incense" }
+  ] },
   { species: "Tyrogue", evolvesTo: [
     { species: "Hitmonlee", trigger: "Lv 20 (Atk > Def)" },
     { species: "Hitmonchan", trigger: "Lv 20 (Def > Atk)" },
     { species: "Hitmontop", trigger: "Lv 20 (Atk = Def)" }
   ] },
   { species: "Lickitung", evolvesTo: [{ species: "Lickilicky", trigger: "Learn Rollout" }] },
-  { species: "Koffing", evolvesTo: [{ species: "Weezing", trigger: "Lv 35" }] },
+  { species: "Koffing", evolvesTo: [
+    { species: "Weezing", trigger: "Lv 35" },
+    { species: "Weezing (Galar)", trigger: "Lv 35 (knowing Strange Steam)" }
+  ] },
   { species: "Rhyhorn", evolvesTo: [{ species: "Rhydon", trigger: "Lv 42", evolvesTo: [{ species: "Rhyperior", trigger: "Protector + Link Cable" }] }] },
   { species: "Happiny", evolvesTo: [{ species: "Chansey", trigger: "Oval Stone (Day)", evolvesTo: [{ species: "Blissey", trigger: "High Friendship" }] }] },
   { species: "Tangela", evolvesTo: [{ species: "Tangrowth", trigger: "Learn Ancient Power" }] },
@@ -325,7 +337,26 @@ var RAW_EVO_CHAINS = [
     { species: "Samurott", trigger: "Lv 36" },
     { species: "Samurott (Hisui)", trigger: "Lv 36 + Incense Burner" }
   ] }] },
-  { species: "Basculin", evolvesTo: [{ species: "Basculegion", trigger: "Recoil Damage in Battle" }] }
+  { species: "Basculin", evolvesTo: [{ species: "Basculegion", trigger: "Recoil Damage in Battle" }] },
+
+  // Regional Chains (Alolan & Galarian)
+  { species: "Rattata (Alola)", evolvesTo: [{ species: "Raticate (Alola)", trigger: "Lv 20 (Night)" }] },
+  { species: "Sandshrew (Alola)", evolvesTo: [{ species: "Sandslash (Alola)", trigger: "Ice Stone" }] },
+  { species: "Vulpix (Alola)", evolvesTo: [{ species: "Ninetales (Alola)", trigger: "Ice Stone" }] },
+  { species: "Diglett (Alola)", evolvesTo: [{ species: "Dugtrio (Alola)", trigger: "Lv 26" }] },
+  { species: "Meowth (Alola)", evolvesTo: [{ species: "Persian (Alola)", trigger: "High Friendship / Lv 28" }] },
+  { species: "Meowth (Galar)", evolvesTo: [{ species: "Perrserker", trigger: "Lv 28" }] },
+  { species: "Geodude (Alola)", evolvesTo: [{ species: "Graveler (Alola)", trigger: "Lv 25", evolvesTo: [{ species: "Golem (Alola)", trigger: "Link Cable" }] }] },
+  { species: "Grimer (Alola)", evolvesTo: [{ species: "Muk (Alola)", trigger: "Lv 38" }] },
+  { species: "Ponyta (Galar)", evolvesTo: [{ species: "Rapidash (Galar)", trigger: "Lv 40" }] },
+  { species: "Slowpoke (Galar)", evolvesTo: [
+    { species: "Slowbro (Galar)", trigger: "King's Rock" },
+    { species: "Slowking (Galar)", trigger: "King's Rock" }
+  ] },
+  { species: "Farfetch'd (Galar)", evolvesTo: [{ species: "Sirfetch'd", trigger: "3 Crits in 1 Battle" }] },
+  { species: "Mr. Mime (Galar)", evolvesTo: [{ species: "Mr. Rime", trigger: "Lv 42" }] },
+  { species: "Corsola (Galar)", evolvesTo: [{ species: "Cursola", trigger: "Lv 38" }] },
+  { species: "Zigzagoon (Galar)", evolvesTo: [{ species: "Linoone (Galar)", trigger: "Lv 20", evolvesTo: [{ species: "Obstagoon", trigger: "Lv 35 (Night)" }] }] }
 ];
 
 // Build bidirectional name index
@@ -333,7 +364,20 @@ var EVO_LOOKUP = {};
 
 function indexEvoNode(node, root) {
   if (!node || !node.species) return;
-  EVO_LOOKUP[node.species.toLowerCase().trim()] = root;
+  var name = node.species.toLowerCase().trim();
+  EVO_LOOKUP[name] = root;
+  if (name.includes(' (alola)')) {
+    EVO_LOOKUP['alolan ' + name.replace(' (alola)', '')] = root;
+    EVO_LOOKUP['alola-' + name.replace(' (alola)', '')] = root;
+  }
+  if (name.includes(' (galar)')) {
+    EVO_LOOKUP['galarian ' + name.replace(' (galar)', '')] = root;
+    EVO_LOOKUP['galar-' + name.replace(' (galar)', '')] = root;
+  }
+  if (name.includes(' (hisui)')) {
+    EVO_LOOKUP['hisuian ' + name.replace(' (hisui)', '')] = root;
+    EVO_LOOKUP['hisui-' + name.replace(' (hisui)', '')] = root;
+  }
   if (node.evolvesTo && Array.isArray(node.evolvesTo)) {
     node.evolvesTo.forEach(child => indexEvoNode(child, root));
   }
@@ -356,6 +400,7 @@ function findPokemonByName(name) {
 function getEvoSprite(speciesName) {
   var p = findPokemonByName(speciesName);
   if (p) {
+    if (p.sprite) return p.sprite;
     var num = p.id <= 493 ? p.id : 387;
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
   }

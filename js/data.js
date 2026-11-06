@@ -3408,8 +3408,9 @@ var ROUTES_DATA = [
     region: "Sinnoh Surface",
     type: "Grassland",
     encounters: [
-      { name: "Starly", method: "Walking", rate: "50%", lvls: "2-4", types: ["Normal", "Flying"] },
-      { name: "Bidoof", method: "Walking", rate: "50%", lvls: "2-4", types: ["Normal"] },
+      { name: "Starly", method: "Walking", rate: "40%", lvls: "2-4", types: ["Normal", "Flying"] },
+      { name: "Bidoof", method: "Walking", rate: "40%", lvls: "2-4", types: ["Normal"] },
+      { name: "Rattata (Alola)", method: "Incense Burner", rate: "20%", lvls: "5", types: ["Normal", "Dark"] },
       { name: "Nidoran♀", method: "Poké Radar", rate: "20%", lvls: "3-4", types: ["Poison"] },
       { name: "Nidoran♂", method: "Poké Radar", rate: "20%", lvls: "3-4", types: ["Poison"] }
     ]

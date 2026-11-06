@@ -119,6 +119,8 @@
     const nameStr = typeof pokemonOrName === 'string' ? pokemonOrName : (pokemonOrName.name || '');
     const rawName = nameStr.toLowerCase()
       .replace(' (hisui)', '-hisui')
+      .replace(' (alola)', '-alola')
+      .replace(' (galar)', '-galar')
       .replace(' (wash)', '-wash')
       .replace(' (heat)', '-heat')
       .replace(' (frost)', '-frost')
@@ -135,12 +137,14 @@
 
   function getFallbackSpriteUrl(pokemonOrName) {
     if (!pokemonOrName) return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png';
-    if (typeof pokemonOrName === 'object' && pokemonOrName.id) {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonOrName.id <= 493 ? pokemonOrName.id : 387}.png`;
+    if (typeof pokemonOrName === 'object') {
+      if (pokemonOrName.sprite) return pokemonOrName.sprite;
+      if (pokemonOrName.id) return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonOrName.id <= 493 ? pokemonOrName.id : 387}.png`;
     }
     const nameStr = typeof pokemonOrName === 'string' ? pokemonOrName : (pokemonOrName.name || '');
     const found = getRoster().find(p => p.name.toLowerCase() === nameStr.toLowerCase() || p.name.toLowerCase().startsWith(nameStr.toLowerCase()));
     if (found) {
+      if (found.sprite) return found.sprite;
       return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${found.id <= 493 ? found.id : 387}.png`;
     }
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png';
@@ -148,6 +152,7 @@
 
   function getListSpriteUrl(p) {
     if (!p) return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png';
+    if (p.sprite) return p.sprite;
     const id = p.id <= 493 ? p.id : 387;
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   }
@@ -206,8 +211,12 @@
 
     if (state.searchQuery.trim()) {
       const q = state.searchQuery.toLowerCase().trim();
+      const qNorm = q.replace(/[\s\-_()]/g, '');
       result = result.filter(p => {
-        const matchName = p.name.toLowerCase().includes(q);
+        const nameLower = p.name.toLowerCase();
+        const nameNorm = nameLower.replace(/[\s\-_()]/g, '');
+        const slugNorm = p.slug ? p.slug.toLowerCase().replace(/[\s\-_()]/g, '') : '';
+        const matchName = nameLower.includes(q) || nameNorm.includes(qNorm) || (slugNorm && slugNorm.includes(qNorm));
         const matchDex = p.dexNum.toLowerCase().includes(q);
         const matchType = p.types.some(t => t.toLowerCase().includes(q));
         const matchAbility = (p.abilities.concat(p.hiddenAbility || [])).some(a => a.toLowerCase().includes(q));
